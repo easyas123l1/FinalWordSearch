@@ -10,8 +10,9 @@ export const loginUser = credentials => dispatch => {
 
   //need to make sure the URL is correct.
   axios
-    .post("https://dad-jokes-2019.herokuapp.com/api/auth/login", credentials)
+    .post("http://localhost:5000/api/login", credentials)
     .then(res => {
+      console.log(res);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("id", res.data.id);
       // Need to fix the payload.  Once backend is updated we should get back username, email, image url, and maybe userID

@@ -45,7 +45,7 @@ const Register = props => {
           value={cred.username}
         />
         <input
-          type="text"
+          type="password"
           name="password"
           onChange={changeHandler}
           placeholder="password"
