@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+
+import PrivateRoute from "./components/Private/PrivateRoute";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar />
+      <Switch>
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <Route component={Register} />{" "}
+        {/* default route incase route doesn't exist */}
+      </Switch>
+    </>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps, {})(App);
