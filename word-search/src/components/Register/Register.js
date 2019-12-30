@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const Register = props => {
-  console.log(props);
   const [cred, setCred] = useState(initialState);
 
   const changeHandler = e => {
@@ -61,7 +60,9 @@ const Register = props => {
         />
         <button type="submit">Create Account</button>
       </form>
-      <h1>Register</h1>
+      <p>
+        If you have an account, <Link to="/login">Click here to sign in</Link>.
+      </p>
     </>
   );
 };
