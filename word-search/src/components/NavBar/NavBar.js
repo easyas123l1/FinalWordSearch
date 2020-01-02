@@ -13,6 +13,9 @@ const NavBar = () => {
       <div>
         <Link to="/login">Login</Link>
       </div>
+      <div>
+        <Link to="/createPuzzle">Create Puzzle</Link>
+      </div>
     </>
   );
 };

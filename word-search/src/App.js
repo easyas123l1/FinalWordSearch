@@ -6,6 +6,8 @@ import PrivateRoute from "./components/Private/PrivateRoute";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
+import AddPuzzle from "./components/Puzzle/addPuzzle";
+import CreatePuzzle from "./components/Puzzle/createPuzzle";
 
 function App() {
   return (
@@ -14,6 +16,12 @@ function App() {
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <PrivateRoute path="/addPuzzle">
+          <AddPuzzle />
+        </PrivateRoute>
+        <PrivateRoute path="/createPuzzle">
+          <CreatePuzzle />
+        </PrivateRoute>
         <Route component={Register} />{" "}
         {/* default route incase route doesn't exist */}
       </Switch>
