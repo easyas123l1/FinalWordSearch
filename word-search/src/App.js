@@ -6,8 +6,8 @@ import PrivateRoute from "./components/Private/PrivateRoute";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
-import AddPuzzle from "./components/Puzzle/addPuzzle";
-import CreatePuzzle from "./components/Puzzle/createPuzzle";
+import AddPuzzle from "./components/Puzzle/AddPuzzle";
+import CreatePuzzle from "./components/Puzzle/CreatePuzzle";
 
 function App() {
   return (

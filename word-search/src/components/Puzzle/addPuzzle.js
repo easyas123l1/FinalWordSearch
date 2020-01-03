@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const addPuzzle = () => {
+const AddPuzzle = () => {
   return <div></div>;
 };
 
@@ -9,4 +9,4 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(mapStateToProps, {})(addPuzzle);
+export default connect(mapStateToProps, {})(AddPuzzle);
