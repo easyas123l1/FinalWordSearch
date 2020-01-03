@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { generatePuzzle } from "../../store/actions/puzzleAction";
 
-const CreatePuzzle = () => {
+const CreatePuzzle = ({ generatePuzzle }) => {
   const [words, setWords] = useState([]);
   const [text, setText] = useState("");
   const [size, setSize] = useState(10);
@@ -92,6 +93,12 @@ const CreatePuzzle = () => {
     setWords(newWords);
   };
 
+  const generate = e => {
+    e.preventDefault();
+    // this is where we will do something like send this puzzle to redux and then send us to generatePuzzle(its named addPuzzle atm prolly rename)
+    console.log("generate puzzle button clicked!");
+  };
+
   return (
     <div>
       <p>Enter a word:</p>
@@ -128,6 +135,7 @@ const CreatePuzzle = () => {
             ))}
         </ul>
       </div>
+      <button onClick={generate}>Generate Puzzle</button>
     </div>
   );
 };
@@ -136,4 +144,4 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(mapStateToProps, {})(CreatePuzzle);
+export default connect(mapStateToProps, { generatePuzzle })(CreatePuzzle);
