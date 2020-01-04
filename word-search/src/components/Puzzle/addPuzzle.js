@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import uuid from "uuid";
 import { connect } from "react-redux";
 
 const AddPuzzle = ({ words, size }) => {
+  console.log(words, size);
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
-  const [firstClick, setFirstClick] = useState("");
-  const [solved, setSolved] = useState(false);
 
   const randomPosition = () => {
     let position1 = Math.floor(Math.random() * size);
@@ -153,15 +153,15 @@ const AddPuzzle = ({ words, size }) => {
   const randomChecker = tried => {
     let newPosition = false;
     while (!newPosition) {
-      const randomPosition = randomPosition();
+      const newRandomPosition = randomPosition();
       newPosition = true;
       for (let index of tried) {
-        if (randomPosition === index) {
+        if (newRandomPosition === index) {
           newPosition = false;
         }
       }
       if (newPosition) {
-        return randomPosition;
+        return newRandomPosition;
       }
     }
   };
@@ -202,7 +202,7 @@ const AddPuzzle = ({ words, size }) => {
         if (!directUp && !directLeft && !directDown && !directRight) {
           possiblePlacement = false;
         } else {
-          const directUpLeft = testDiagonal(directUp, directUpLeft);
+          const directUpLeft = testDiagonal(directUp, directLeft);
           const directUpRight = testDiagonal(directUp, directRight);
           const directDownRight = testDiagonal(directDown, directRight);
           const directDownLeft = testDiagonal(directDown, directLeft);
@@ -340,35 +340,82 @@ const AddPuzzle = ({ words, size }) => {
     return coordinates;
   };
 
+  const regeneratePuzzle = () => {
+    setLines([]);
+    setAnswers([]);
+    generatePuzzle();
+  };
+
+  const generatePuzzle = () => {
+    const newAnswers = placeWords();
+    setAnswers(newAnswers);
+    for (let i = 0; size > i; i++) {
+      const line = [];
+      for (let i2 = 0; size > i2; i2++) {
+        let letterid = "";
+        let letter = "";
+        letterid = `${i}, ${i2}`;
+        for (let answer of newAnswers) {
+          if (answer.position === letterid) {
+            letter = answer.character;
+          }
+        }
+        if (letter === "") {
+          letter = randomLetter();
+        }
+        const newLetter = {
+          text: letter,
+          id: letterid,
+          circle: "",
+          first: "",
+          color: "",
+          hover: ""
+        };
+        line.push(newLetter);
+        if (i2 + 1 === size) {
+          const newLine = {
+            text: line,
+            id: uuid.v4()
+          };
+          setLines([...lines, newLine]);
+        }
+      }
+    }
+  };
+
+  const savePuzzle = e => {
+    console.log(e);
+  };
+
+  const editPuzzle = e => {
+    console.log(e);
+  };
+
   return (
     <div>
       <div>
         <h1>TITLE OF PUZZLE</h1>
-        <ul onClick={wordFind}>
-          lines.map(line => (
-          <li id={lines.id}>
-            {lines.text.map(letter => (
-              <p
-                onMouseEnter={mouseHover}
-                onMouseLeave={mouseLeave}
-                id={letter.id}
-                key={letter.id}
-              >
-                {letter.text}
-              </p>
-            ))}
-          </li>
-          ))
+        <ul>
+          {lines.map(line => (
+            <li id={lines.id}>
+              {line.text.map(letter => (
+                <p id={letter.id} key={letter.id}>
+                  {letter.text}
+                </p>
+              ))}
+            </li>
+          ))}
         </ul>
       </div>
       <div>
         <ul>
           <h1>WORDS TO FIND:</h1>
-          {words.map(word => (
-            <li id={word.id} key={word.id}>
-              {word.text}
-            </li>
-          ))}
+          {words &&
+            words.map(word => (
+              <li id={word.id} key={word.id}>
+                {word.text}
+              </li>
+            ))}
         </ul>
         <div>
           <button onClick={regeneratePuzzle}>Generate new Puzzle</button>
