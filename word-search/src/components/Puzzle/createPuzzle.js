@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { generatePuzzle } from "../../store/actions/puzzleAction";
 
 const CreatePuzzle = ({ generatePuzzle }) => {
@@ -7,6 +8,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const [text, setText] = useState("");
   const [size, setSize] = useState(10);
   const [badWords, setBadWords] = useState([]);
+  const history = useHistory();
 
   const changeHandler = e => {
     e.persist();
@@ -95,8 +97,13 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 
   const generate = e => {
     e.preventDefault();
-    // this is where we will do something like send this puzzle to redux and then send us to generatePuzzle(its named addPuzzle atm prolly rename)
+    const puzzle = {
+      words,
+      size
+    };
+    generatePuzzle(puzzle);
     console.log("generate puzzle button clicked!");
+    history.push("/addPuzzle");
   };
 
   return (
