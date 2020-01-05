@@ -344,10 +344,12 @@ const AddPuzzle = ({ words, size }) => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
+    console.log(lines);
   };
 
   const generatePuzzle = () => {
     const newAnswers = placeWords();
+    const newLines = [];
     setAnswers(newAnswers);
     for (let i = 0; size > i; i++) {
       const line = [];
@@ -377,10 +379,11 @@ const AddPuzzle = ({ words, size }) => {
             text: line,
             id: uuid.v4()
           };
-          setLines([...lines, newLine]);
+          newLines.push(newLine);
         }
       }
     }
+    setLines(newLines);
   };
 
   const savePuzzle = e => {
@@ -397,7 +400,7 @@ const AddPuzzle = ({ words, size }) => {
         <h1>TITLE OF PUZZLE</h1>
         <ul>
           {lines.map(line => (
-            <li id={lines.id}>
+            <li id={line.id} key={line.id}>
               {line.text.map(letter => (
                 <p id={letter.id} key={letter.id}>
                   {letter.text}
@@ -429,8 +432,8 @@ const AddPuzzle = ({ words, size }) => {
 
 const mapStateToProps = state => {
   return {
-    words: state.words,
-    size: state.size
+    words: state.puzzleReducer.words,
+    size: state.puzzleReducer.size
   };
 };
 

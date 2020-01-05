@@ -17,7 +17,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 
   const changeSize = e => {
     e.persist();
-    setSize(e.target.value);
+    setSize(+e.target.value);
   };
 
   const handleRemove = e => {
