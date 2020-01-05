@@ -1,6 +1,7 @@
 import { START_PUZZLE } from "../actions/puzzleAction";
 
 const initState = {
+  title: "",
   words: [],
   size: 10
 };
@@ -10,6 +11,7 @@ export const puzzleReducer = (state = initState, action) => {
     case START_PUZZLE:
       return {
         ...state,
+        title: action.payload.title,
         words: action.payload.words,
         size: action.payload.size
       };

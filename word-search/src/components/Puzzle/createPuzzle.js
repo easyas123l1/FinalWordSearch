@@ -8,11 +8,18 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const [text, setText] = useState("");
   const [size, setSize] = useState(10);
   const [badWords, setBadWords] = useState([]);
+  const [title, setTitle] = useState("");
+
   const history = useHistory();
 
   const changeHandler = e => {
     e.persist();
     setText(e.target.value.toUpperCase());
+  };
+
+  const changeTitle = e => {
+    e.persist();
+    setTitle(e.target.value);
   };
 
   const changeSize = e => {
@@ -98,6 +105,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const generate = e => {
     e.preventDefault();
     const puzzle = {
+      title,
       words,
       size
     };
@@ -108,7 +116,15 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 
   return (
     <div>
-      <p>Enter a word:</p>
+      <p>1. Name your puzzle:</p>
+      <input
+        type="text"
+        name="title"
+        onChange={changeTitle}
+        placeholder="Title of puzzle!"
+        value={title}
+      />
+      <p>2. Add some words:</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -121,7 +137,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
         <button onClick={handleRemove}>Remove word</button>
       </form>
       <form>
-        <p>Pick a size</p>
+        <p>3. Pick a size (10-50)</p>
         <input
           type="number"
           name="size"
@@ -142,7 +158,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
             ))}
         </ul>
       </div>
-      <button onClick={generate}>Generate Puzzle</button>
+      <button onClick={generate}>4. Generate Puzzle</button>
     </div>
   );
 };

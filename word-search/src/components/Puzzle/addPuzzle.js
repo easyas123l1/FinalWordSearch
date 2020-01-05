@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
 
-const AddPuzzle = ({ words, size }) => {
-  console.log(words, size);
+const AddPuzzle = ({ title, words, size }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
@@ -344,12 +343,12 @@ const AddPuzzle = ({ words, size }) => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
-    console.log(lines);
   };
 
   const generatePuzzle = () => {
     const newAnswers = placeWords();
     const newLines = [];
+    console.log(newAnswers);
     setAnswers(newAnswers);
     for (let i = 0; size > i; i++) {
       const line = [];
@@ -397,7 +396,7 @@ const AddPuzzle = ({ words, size }) => {
   return (
     <div>
       <div>
-        <h1>TITLE OF PUZZLE</h1>
+        <h1>{title}</h1>
         <ul>
           {lines.map(line => (
             <li id={line.id} key={line.id}>
@@ -432,6 +431,7 @@ const AddPuzzle = ({ words, size }) => {
 
 const mapStateToProps = state => {
   return {
+    title: state.puzzleReducer.title,
     words: state.puzzleReducer.words,
     size: state.puzzleReducer.size
   };
