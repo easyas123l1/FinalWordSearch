@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
+import puzzle from "../../styles/puzzle.module.scss";
 
 const AddPuzzle = ({ title, words, size }) => {
   const [lines, setLines] = useState([]);
@@ -387,6 +388,58 @@ const AddPuzzle = ({ title, words, size }) => {
 
   const savePuzzle = e => {
     console.log(e);
+    // the backend will need to be changed to have it where words accepts a position and direction.
+    // now we will need to create a function that takes answers and words and comparing the 1st and 2nd character locations to figure out which direction the word is going.
+    const wordPosDir = wordPositionDirection();
+    console.log(wordPosDir);
+    console.log(lines);
+  };
+
+  const wordPositionDirection = () => {
+    // words
+    // answers
+    let index = 0;
+    let final = [];
+    for (let word of words) {
+      let dir = "";
+      let first = answers[index].position;
+      let second = answers[index + 1].position;
+      let firstPos = first.replace(",", "").split(" ");
+      let secondPos = second.replace(",", "").split(" ");
+      if (+firstPos[0] === +secondPos[0]) {
+        if (+firstPos[1] > +secondPos[1]) {
+          dir = "Up";
+        } else {
+          dir = "Down";
+        }
+      }
+      if (+firstPos[0] > +secondPos[0]) {
+        if (+firstPos[1] > +secondPos[1]) {
+          dir = "UpLeft";
+        } else if (+firstPos[1] === +secondPos[1]) {
+          dir = "Left";
+        } else {
+          dir = "DownLeft";
+        }
+      }
+      if (+firstPos[0] < +secondPos[0]) {
+        if (+firstPos[1] > +secondPos[1]) {
+          dir = "UpRight";
+        } else if (+firstPos[1] === +secondPos[1]) {
+          dir = "Right";
+        } else {
+          dir = "DownRight";
+        }
+      }
+      const newObj = {
+        word: word.text,
+        position: answers[index].position,
+        direction: dir
+      };
+      final.push(newObj);
+      index += word.text.length;
+    }
+    return final;
   };
 
   const editPuzzle = e => {
@@ -394,12 +447,12 @@ const AddPuzzle = ({ title, words, size }) => {
   };
 
   return (
-    <div>
-      <div>
+    <div className={puzzle.wordSearch}>
+      <div className={puzzle.puzzle}>
         <h1>{title}</h1>
         <ul>
           {lines.map(line => (
-            <li id={line.id} key={line.id}>
+            <li id={line.id} key={line.id} className={puzzle.findWordRow}>
               {line.text.map(letter => (
                 <p id={letter.id} key={letter.id}>
                   {letter.text}

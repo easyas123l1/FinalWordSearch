@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-
+import "./styles/global.scss";
 import PrivateRoute from "./components/Private/PrivateRoute";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
