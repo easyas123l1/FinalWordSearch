@@ -388,16 +388,23 @@ const AddPuzzle = ({ title, words, size }) => {
 
   const savePuzzle = e => {
     console.log(e);
-    // the backend will need to be changed to have it where words accepts a position and direction.
-    // now we will need to create a function that takes answers and words and comparing the 1st and 2nd character locations to figure out which direction the word is going.
     const wordPosDir = wordPositionDirection();
     console.log(wordPosDir);
     console.log(lines);
+    let letters = [];
+    lines.map(line => {
+      line.text.map(letter => letters.push(letter.text));
+    });
+    letters = letters.join("");
+    console.log(letters);
+    console.log(typeof letters);
+    // word position direction
+    // letters === code for puzzle.
+    // title
+    // user id who created puzzle
   };
 
   const wordPositionDirection = () => {
-    // words
-    // answers
     let index = 0;
     let final = [];
     for (let word of words) {
