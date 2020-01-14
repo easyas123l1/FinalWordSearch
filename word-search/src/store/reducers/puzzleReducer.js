@@ -2,7 +2,10 @@ import {
   START_PUZZLE,
   SAVE_FAILURE,
   START_SAVE,
-  SAVE_SUCCESS
+  SAVE_SUCCESS,
+  GET_PUZZLES,
+  PUZZLES_SUCCESS,
+  PUZZLES_FAILURE
 } from "../actions/puzzleAction";
 
 const initState = {
@@ -10,6 +13,8 @@ const initState = {
   words: [],
   size: 10,
 
+  puzzles: [],
+  getPuzzles: false,
   savePuzzleName: "",
   savePuzzleCode: "",
   savePuzzleDescription: "",
@@ -50,6 +55,25 @@ export const puzzleReducer = (state = initState, action) => {
     case SAVE_FAILURE:
       return {
         isSaving: false,
+        errorMessage: action.payload
+      };
+
+    case GET_PUZZLES:
+      return {
+        getPuzzles: true,
+        errorMessage: ""
+      };
+
+    case PUZZLES_SUCCESS:
+      return {
+        getPuzzles: false,
+        puzzles: action.payload,
+        errorMessage: ""
+      };
+
+    case PUZZLES_FAILURE:
+      return {
+        getPuzzles: false,
         errorMessage: action.payload
       };
 
