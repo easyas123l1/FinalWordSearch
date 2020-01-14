@@ -54,18 +54,21 @@ export const puzzleReducer = (state = initState, action) => {
 
     case SAVE_FAILURE:
       return {
+        ...state,
         isSaving: false,
         errorMessage: action.payload
       };
 
     case GET_PUZZLES:
       return {
+        ...state,
         getPuzzles: true,
         errorMessage: ""
       };
 
     case PUZZLES_SUCCESS:
       return {
+        ...state,
         getPuzzles: false,
         puzzles: action.payload,
         errorMessage: ""
@@ -73,6 +76,7 @@ export const puzzleReducer = (state = initState, action) => {
 
     case PUZZLES_FAILURE:
       return {
+        ...state,
         getPuzzles: false,
         errorMessage: action.payload
       };
