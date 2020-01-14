@@ -7,7 +7,7 @@ export const generatePuzzle = puzzle => dispatch => {
 };
 
 export const START_SAVE = "START_SAVE";
-export const SAVE_SUCCCESS = "SAVE_SUCCESS";
+export const SAVE_SUCCESS = "SAVE_SUCCESS";
 export const SAVE_FAILURE = "SAVE_FAILURE";
 
 export const savePuzzle = puzzle => dispatch => {
@@ -16,7 +16,7 @@ export const savePuzzle = puzzle => dispatch => {
   axios
     .post("localhost:5000/api/puzzle", puzzle)
     .then(res => {
-      return dispatch({ type: SAVE_SUCCCESS, payload: res.data });
+      return dispatch({ type: SAVE_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);

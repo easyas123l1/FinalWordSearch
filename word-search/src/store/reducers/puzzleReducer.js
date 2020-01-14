@@ -1,4 +1,9 @@
-import { START_PUZZLE, SAVE_FAILURE } from "../actions/puzzleAction";
+import {
+  START_PUZZLE,
+  SAVE_FAILURE,
+  START_SAVE,
+  SAVE_SUCCESS
+} from "../actions/puzzleAction";
 
 const initState = {
   title: "",
