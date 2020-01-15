@@ -6,8 +6,9 @@ import PrivateRoute from "./components/Private/PrivateRoute";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
-import AddPuzzle from "./components/Puzzle/AddPuzzle";
-import CreatePuzzle from "./components/Puzzle/CreatePuzzle";
+import AddPuzzle from "./components/Puzzle/addPuzzle";
+import CreatePuzzle from "./components/Puzzle/createPuzzle";
+import AllPuzzles from './components/Puzzle/AllPuzzles';
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/allPuzzles" component={AllPuzzles} />
         <PrivateRoute path="/addPuzzle">
-          <AddPuzzle />
+          <AddPuzzle />                         
         </PrivateRoute>
         <PrivateRoute path="/createPuzzle">
           <CreatePuzzle />

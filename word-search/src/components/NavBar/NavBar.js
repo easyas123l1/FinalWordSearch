@@ -8,6 +8,9 @@ const NavBar = () => {
   return (
     <>
       <div>
+        <Link to="/AllPuzzles">All Puzzles</Link>
+      </div>
+      <div>
         <Link to="/register">Register</Link>
       </div>
       <div>
