@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
+import { reduxSavePuzzle } from "../../store/actions/puzzleAction";
 
-const AddPuzzle = ({ title, words, size }) => {
+const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
@@ -497,4 +498,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(AddPuzzle);
+export default connect(mapStateToProps, { reduxSavePuzzle })(AddPuzzle);

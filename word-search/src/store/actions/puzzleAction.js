@@ -12,7 +12,7 @@ export const SAVE_SUCCESS = "SAVE_SUCCESS";
 export const SAVE_FAILURE = "SAVE_FAILURE";
 
 // axios call to save puzzle
-export const savePuzzle = puzzle => dispatch => {
+export const reduxSavePuzzle = puzzle => dispatch => {
   dispatch({ type: START_SAVE });
 
   axios
@@ -42,5 +42,24 @@ export const getPuzzles = () => dispatch => {
     .catch(err => {
       console.log(err);
       dispatch({ type: PUZZLES_FAILURE, payload: err.response.data.message });
+    });
+};
+
+export const GET_PUZZLE = "GET_PUZZLE";
+export const PUZZLE_SUCCESS = "PUZZLE_SUCCESS";
+export const PUZZLE_FAILURE = "PUZZLE_FAILURE";
+
+// axios call to get individual puzzle info words, code, description, name
+export const getPuzzle = id => dispatch => {
+  dispatch({ type: GET_PUZZLE });
+
+  axios
+    .get(`localhost:5000/api/puzzle/${id}`)
+    .then(res => {
+      return dispatch({ type: PUZZLE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: PUZZLE_FAILURE, payload: err.response.data.message });
     });
 };

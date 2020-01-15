@@ -5,7 +5,10 @@ import {
   SAVE_SUCCESS,
   GET_PUZZLES,
   PUZZLES_SUCCESS,
-  PUZZLES_FAILURE
+  PUZZLES_FAILURE,
+  GET_PUZZLE,
+  PUZZLE_SUCCESS,
+  PUZZLE_FAILURE
 } from "../actions/puzzleAction";
 
 const initState = {
@@ -13,7 +16,14 @@ const initState = {
   words: [],
   size: 10,
 
+  playPuzzleName: "",
+  playPuzzleCode: "",
+  playPuzzleDescription: "",
+  playPuzzleRating: "",
+  playPuzzleCreator: "",
+  playPuzzleWords: [],
   puzzles: [],
+  getPuzzle: false,
   getPuzzles: false,
   savePuzzleName: "",
   savePuzzleCode: "",
@@ -78,6 +88,33 @@ export const puzzleReducer = (state = initState, action) => {
       return {
         ...state,
         getPuzzles: false,
+        errorMessage: action.payload
+      };
+
+    case GET_PUZZLE:
+      return {
+        ...state,
+        getPuzzle: true,
+        errorMessage: ""
+      };
+
+    case PUZZLE_SUCCESS:
+      return {
+        ...state,
+        getPuzzle: false,
+        playPuzzleName: action.payload.puzzle.name,
+        playPuzzleCode: action.payload.puzzle.code,
+        playPuzzleDescription: action.payload.puzzle.description,
+        playPuzzleRating: action.payload.puzzle.rating,
+        playPuzzleCreator: action.payload.puzzle.user_id,
+        playPuzzleWords: action.payload.words,
+        errorMessage: ""
+      };
+
+    case PUZZLE_FAILURE:
+      return {
+        ...state,
+        getPuzzle: false,
         errorMessage: action.payload
       };
 
