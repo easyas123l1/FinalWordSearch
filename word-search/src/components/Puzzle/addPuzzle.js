@@ -403,6 +403,14 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     // letters === code for puzzle.
     // title
     // user id who created puzzle
+    // object should have name, code, description, and array of words
+    let savePuz = {
+      name: title,
+      code: letters,
+      description: "",
+      words: wordPosDir
+    };
+    reduxSavePuzzle(savePuz);
   };
 
   const wordPositionDirection = () => {

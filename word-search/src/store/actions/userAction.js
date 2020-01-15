@@ -10,7 +10,7 @@ export const loginUser = credentials => dispatch => {
 
   //need to make sure the URL is correct.
   axios
-    .post("http://localhost:5000/api/login", credentials)
+    .post("http://localhost:5000/api/user/login", credentials)
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
