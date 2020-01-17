@@ -68,12 +68,11 @@ export const getPuzzle = id => dispatch => {
   dispatch({ type: GET_PUZZLE });
 
   axios
-    .get(`localhost:5000/api/puzzle/${id}`)
+    .get(`http://localhost:5000/api/puzzle/${id}`)
     .then(res => {
       return dispatch({ type: PUZZLE_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: PUZZLE_FAILURE, payload: err.response.data.message });
+      dispatch({ type: PUZZLE_FAILURE, payload: err });
     });
 };

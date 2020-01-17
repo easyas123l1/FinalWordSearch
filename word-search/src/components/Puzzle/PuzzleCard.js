@@ -1,10 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getPuzzle } from "../../store/actions/puzzleAction";
 
-const PuzzleCard = ({ puzzle: { id, name, code, description } }) => {
+const PuzzleCard = ({
+  puzzle: { id, name, code, description },
+  getPuzzle,
+  words
+}) => {
   const playPuzzle = e => {
     e.preventDefault();
     console.log("clicked id", id);
+    getPuzzle(id);
+    console.log(words);
   };
 
   return (
@@ -20,7 +27,9 @@ const PuzzleCard = ({ puzzle: { id, name, code, description } }) => {
 };
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    words: state.puzzleReducer.playPuzzleWords
+  };
 }
 
-export default connect(mapStateToProps, {})(PuzzleCard);
+export default connect(mapStateToProps, { getPuzzle })(PuzzleCard);
