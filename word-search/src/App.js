@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar/NavBar";
 import AddPuzzle from "./components/Puzzle/AddPuzzle";
 import CreatePuzzle from "./components/Puzzle/CreatePuzzle";
 import AllPuzzles from "./components/Puzzle/AllPuzzles";
+import PlayPuzzle from "./components/Puzzle/PlayPuzzle";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/allPuzzles" component={AllPuzzles} />
+        <Route path="/playPuzzle" component={PlayPuzzle} />
         <PrivateRoute path="/addPuzzle">
           <AddPuzzle />
         </PrivateRoute>

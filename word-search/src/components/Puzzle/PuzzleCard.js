@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getPuzzle } from "../../store/actions/puzzleAction";
 
 const PuzzleCard = ({
@@ -7,11 +8,13 @@ const PuzzleCard = ({
   getPuzzle,
   words
 }) => {
+  const history = useHistory();
   const playPuzzle = e => {
     e.preventDefault();
     console.log("clicked id", id);
     getPuzzle(id);
-    console.log(words);
+    console.log("playing");
+    history.push("/playPuzzle");
   };
 
   return (
