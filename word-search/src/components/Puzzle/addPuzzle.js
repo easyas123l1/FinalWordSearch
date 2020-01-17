@@ -392,6 +392,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     const wordPosDir = wordPositionDirection();
     console.log(wordPosDir);
     console.log(lines);
+    console.log(answers);
     let letters = [];
     lines.map(line => {
       line.text.map(letter => letters.push(letter.text));
