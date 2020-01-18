@@ -9,12 +9,14 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
 
+  // useEffect that generates a puzzle on load and every time words or size change.
   useEffect(() => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
   }, [words, size]);
 
+  // selects a random position on the board
   const randomPosition = () => {
     let position1 = Math.floor(Math.random() * size);
     let position2 = Math.floor(Math.random() * size);
@@ -22,12 +24,14 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return `${position1}, ${position2}`;
   };
 
+  // selects a random letter
   const randomLetter = () => {
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     return possible.charAt(Math.floor(Math.random() * possible.length));
   };
 
+  // test which directions a word can go.
   const testDirections = (word, position) => {
     // function test the four directions up right down and left.
     let length = word.length - 1;
@@ -56,6 +60,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return [up, left, down, right, row, column];
   };
 
+  // test diagonal directions
   const testDiagonal = (d1, d2) => {
     // test direction1 and direction2
     if (d1 && d2) {
@@ -64,6 +69,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return false;
   };
 
+  // create position character object
   const logPosition = (row, column, character) => {
     let position = `${row}, ${column}`;
     const newCharacter = {
@@ -73,6 +79,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return newCharacter;
   };
 
+  // this is for words that go up
   const goUp = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -83,6 +90,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go up and right
   const goUpRight = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -94,6 +102,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go right
   const goRight = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -104,6 +113,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go down and right
   const goDownRight = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -115,6 +125,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go down
   const goDown = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -125,6 +136,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go down and left
   const goDownLeft = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -136,6 +148,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go left
   const goLeft = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -146,6 +159,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this is for words that go up and left
   const goUpLeft = (word, row, column) => {
     let coordinates = [];
     for (let i = 0; i < word.length; i++) {
@@ -157,6 +171,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // this checks to see if the random position has been tried
   const randomChecker = tried => {
     let newPosition = false;
     while (!newPosition) {
@@ -173,6 +188,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     }
   };
 
+  // this is the function that attempts to place our words within the size of our puzzle.  Side note this function works great at smaller amount of words.  Once users get to about 1000 words this function will slow down as the random process has a hard time finding new positions/directions.  Will also kick out after so many unsuccesful attempts.  (plan on commenting out some of this function later)
   const placeWords = () => {
     const newWords = [];
     for (let word of words) {
@@ -347,12 +363,14 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return coordinates;
   };
 
+  // the button that allows you to rebuild new puzzle.
   const regeneratePuzzle = () => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
   };
 
+  // the *root* function that calls the rest to build our puzzle
   const generatePuzzle = () => {
     const newAnswers = placeWords();
     const newLines = [];
@@ -393,6 +411,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     setLines(newLines);
   };
 
+  // turn the data into variables for the database/call to database to save puzzle/words
   const savePuzzle = e => {
     console.log(e);
     const wordPosDir = wordPositionDirection();
@@ -420,6 +439,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     reduxSavePuzzle(savePuz);
   };
 
+  // the function thats turning the data into variables the database can understand and save.
   const wordPositionDirection = () => {
     let index = 0;
     let final = [];
@@ -465,6 +485,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return final;
   };
 
+  // !!!NOT COMPLETED!!! THIS FUNCTION SEND USER BACK TO PREVIOUS PAGE TO EDIT PUZZLE!  Genius!
   const editPuzzle = e => {
     console.log(e);
   };
