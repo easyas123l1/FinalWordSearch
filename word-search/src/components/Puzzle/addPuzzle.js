@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
@@ -8,6 +8,12 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
+
+  useEffect(() => {
+    setLines([]);
+    setAnswers([]);
+    generatePuzzle();
+  }, [words, size]);
 
   const randomPosition = () => {
     let position1 = Math.floor(Math.random() * size);
