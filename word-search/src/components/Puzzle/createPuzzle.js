@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { generatePuzzle } from "../../store/actions/puzzleAction";
@@ -9,28 +9,8 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const [size, setSize] = useState(10);
   const [badWords, setBadWords] = useState([]);
   const [title, setTitle] = useState("");
+
   const history = useHistory();
-
-  useEffect(() => {
-    console.log("in useEffect");
-    var myTxt = require("../../assets/badwords.txt");
-    readTextFile(myTxt);
-  }, []);
-
-  const readTextFile = file => {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = () => {
-      if (rawFile.readyState === 4) {
-        if (rawFile.status === 200 || rawFile.status === 0) {
-          var allText = rawFile.responseText;
-          allText = allText.split("\n");
-          setBadWords(allText);
-        }
-      }
-    };
-    rawFile.send(null);
-  };
 
   const changeHandler = e => {
     e.persist();
@@ -53,10 +33,9 @@ const CreatePuzzle = ({ generatePuzzle }) => {
     setWords(newWords);
   };
 
-  // this function test if user is trying to add a bad word.
   const badWordTest = word => {
     // check if word is a bad word. naughty naughty!
-    const foundWord = badWords.find(bw => bw.toUpperCase().trim() === word);
+    const foundWord = badWords.find(bw => bw.toupperCase().trim() === word);
     if (foundWord) {
       return false;
     }
@@ -69,28 +48,28 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       alert("Input field can not be empty");
       return;
     }
-    // test user string is only letter characters
+
     if (/[^a-zA-Z]/.test(text)) {
       alert(
         "Input must contain only letters A-Z. (No spaces, numbers, special characters, etc.)"
       );
       return;
     }
-    // test word is greater > 1
+
     if (text.length === 1) {
       alert("Words should be longer then 1 character.");
       return;
     }
-    // test not bad word.
+
     let bad = badWordTest(text);
     if (!bad) {
       alert("Please do not use bad words");
       return;
     }
-    // test same word
+
     for (let word of words) {
       if (word.text === text) {
-        alert("Please do not use the same words");
+        console.log("same word error");
         return;
       }
     }
