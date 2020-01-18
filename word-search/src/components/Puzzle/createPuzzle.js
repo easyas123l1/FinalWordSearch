@@ -9,10 +9,10 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const [size, setSize] = useState(10);
   const [badWords, setBadWords] = useState([]);
   const [title, setTitle] = useState("");
-
   const history = useHistory();
 
   useEffect(() => {
+    console.log("in useEffect");
     var myTxt = require("../../assets/badwords.txt");
     readTextFile(myTxt);
   }, []);
@@ -29,6 +29,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
         }
       }
     };
+    rawFile.send(null);
   };
 
   const changeHandler = e => {
@@ -55,7 +56,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   // this function test if user is trying to add a bad word.
   const badWordTest = word => {
     // check if word is a bad word. naughty naughty!
-    const foundWord = badWords.find(bw => bw.toupperCase().trim() === word);
+    const foundWord = badWords.find(bw => bw.toUpperCase().trim() === word);
     if (foundWord) {
       return false;
     }
@@ -68,19 +69,19 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       alert("Input field can not be empty");
       return;
     }
-
+    // test user string is only letter characters
     if (/[^a-zA-Z]/.test(text)) {
       alert(
         "Input must contain only letters A-Z. (No spaces, numbers, special characters, etc.)"
       );
       return;
     }
-
+    // test word is greater > 1
     if (text.length === 1) {
       alert("Words should be longer then 1 character.");
       return;
     }
-
+    // test not bad word.
     let bad = badWordTest(text);
     if (!bad) {
       alert("Please do not use bad words");
