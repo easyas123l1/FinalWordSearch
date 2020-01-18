@@ -87,10 +87,10 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       alert("Please do not use bad words");
       return;
     }
-
+    // test same word
     for (let word of words) {
       if (word.text === text) {
-        console.log("same word error");
+        alert("Please do not use the same words");
         return;
       }
     }
