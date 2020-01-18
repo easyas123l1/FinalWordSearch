@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { generatePuzzle } from "../../store/actions/puzzleAction";
@@ -11,6 +11,25 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const [title, setTitle] = useState("");
 
   const history = useHistory();
+
+  useEffect(() => {
+    var myTxt = require("../../assets/badwords.txt");
+    readTextFile(myTxt);
+  }, []);
+
+  const readTextFile = file => {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = () => {
+      if (rawFile.readyState === 4) {
+        if (rawFile.status === 200 || rawFile.status === 0) {
+          var allText = rawFile.responseText;
+          allText = allText.split("\n");
+          setBadWords(allText);
+        }
+      }
+    };
+  };
 
   const changeHandler = e => {
     e.persist();
@@ -33,6 +52,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
     setWords(newWords);
   };
 
+  // this function test if user is trying to add a bad word.
   const badWordTest = word => {
     // check if word is a bad word. naughty naughty!
     const foundWord = badWords.find(bw => bw.toupperCase().trim() === word);
