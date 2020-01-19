@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
+import classnames from 'classnames';
 
 const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   console.log("words", words);
@@ -203,7 +204,7 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
         if (firstClickLocation === word.start || firstClickLocation === word.end) {
           if (secondClick === word.start || secondClick === word.end) {
             //solve word cross it off of list.
-            this.props.handleSolve(word);
+            handleSolve(word);
             //loop thru the word to get positions, loop thru lines to find the positions.  When both match add class to circle letter.
             let randomColor = Math.floor(Math.random() * 9);
             let colors = ['cyan', 'red', 'green', 'orange', 'pink', 'yellow', 'purple', 'brown', 'silver']
@@ -277,7 +278,7 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
       return;
     }
     //return the difference of row and column and if possible
-    let returnArray = this.checkTwoConnect(firstClickLocation, e.target.id)
+    let returnArray = checkTwoConnect(firstClickLocation, e.target.id)
     let rowDifference = returnArray[0];
     let columnDifference = returnArray[1];
     let possible = returnArray[2];
@@ -335,14 +336,16 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
     setLines(lines);
   }
 
+
+
   return (
     <div>
       <h1>{name}</h1>
-      <ul>
+      <ul onClick={wordFind}>
         {lines.map(line => (
           <li id={line.id} key={line.id} className={puzzle.findWordRow}>
             {line.text.map(letter => (
-              <p id={letter.id} key={letter.id}>
+              <p onMouseEnter={mouseHover} onMouseLeave={mouseLeave} id={letter.id} key={letter.id} className={classnames(letter.hover, letter.first, letter.circle, letter.color)}>
                 {letter.text}
               </p>
             ))}
@@ -350,10 +353,10 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
         ))}
       </ul>
       <button onClick={buildPuzzle}>Build Puzzle!</button>
-      <h1>words to find:</h1>
+      <h1>WORDS TO FIND:</h1>
       <ul>
         {words.map(word => (
-          <li id={word.id} key={word.id}>
+          <li id={word.id} key={word.id} className={classnames(word.solved, word.color)}>
             {word.word}
           </li>
         ))}
