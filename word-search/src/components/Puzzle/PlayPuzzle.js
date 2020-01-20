@@ -329,26 +329,21 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
     } else {
       return;
     }
-    //add hover to class for styling
-    console.log(locations);
-    let newLines = lines;
+    let newLines = JSON.parse(JSON.stringify(lines));
     for (let index of locations) {
-      for (let line in newLines) {
+      for (let line of newLines) {
         for (let i = 0; i <= size - 1; i++) {
-          if (newLines[line].text[i].id === index) {
-            newLines[line].text[i].hover = "hover";
-            setLines(...lines, lines[line].text[i].hover);
-            console.log(lines[line].text[i].hover, "should be hover");
+          if (line.text[i].id === index) {
+            line.text[i].hover = "hover";
           }
         }
       }
     }
-    console.log(lines, "lines vs newLines", newLines);
     setLines(newLines);
   };
 
   const mouseLeave = () => {
-    let newLines = lines;
+    let newLines = JSON.parse(JSON.stringify(lines));
     for (let line of newLines) {
       for (let i = 0; i <= size - 1; i++) {
         if (line.text[i].hover === "hover") {

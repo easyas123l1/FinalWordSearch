@@ -22,7 +22,10 @@ const Register = props => {
     if (cred.password === cred.verpassword) {
       const user = { username: cred.username, password: cred.password };
       axios
-        .post("http://localhost:5000/api/user/register", user)
+        .post(
+          "https://backend-word-search.herokuapp.com/api/user/register",
+          user
+        )
         .then(res => {
           console.log(res);
           props.history.push("/login");

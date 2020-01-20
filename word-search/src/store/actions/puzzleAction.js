@@ -26,7 +26,7 @@ export const reduxSavePuzzle = puzzle => dispatch => {
   dispatch({ type: START_SAVE });
   console.log(puzzle);
   axiosWithAuth()
-    .post("http://localhost:5000/api/puzzle", puzzle)
+    .post("https://backend-word-search.herokuapp.com/api/puzzle", puzzle)
     .then(res => {
       console.log(res.data);
       return dispatch({ type: SAVE_SUCCESS, payload: res.data });
@@ -49,7 +49,7 @@ export const getPuzzles = () => dispatch => {
   dispatch({ type: GET_PUZZLES });
 
   axios
-    .get("http://localhost:5000/api/puzzle")
+    .get("https://backend-word-search.herokuapp.com/api/puzzle")
     .then(res => {
       return dispatch({ type: PUZZLES_SUCCESS, payload: res.data });
     })
@@ -68,7 +68,7 @@ export const getPuzzle = id => dispatch => {
   dispatch({ type: GET_PUZZLE });
 
   axios
-    .get(`http://localhost:5000/api/puzzle/${id}`)
+    .get(`https://backend-word-search.herokuapp.com/api/puzzle/${id}`)
     .then(res => {
       return dispatch({ type: PUZZLE_SUCCESS, payload: res.data });
     })
