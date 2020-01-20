@@ -1,0 +1,162 @@
+p {
+  text-align: center;
+}
+
+.wordSearch {
+  position: absolute;
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.Puzzle {
+  font-weight: 700;
+  max-width: 75%;
+  margin-left: 50px;
+  padding: 30px;
+  line-height: 1.75;
+  color: black;
+  font-size: 20px;
+  float: left;
+}
+
+.Puzzle ul {
+  justify-content: space-around;
+  width: 100%;
+  display: inline-flex;
+  text-align: justify;
+  background-color: white;
+}
+
+#wordRow {
+  display: inline-block;
+  min-width: 35px;
+}
+
+.wordsToFind {
+  float: right;
+  margin-top: 30px;
+  margin-right: 20px;
+  text-align: center;
+  width: 13%;
+  margin-bottom: 20px;
+}
+
+.wordsToFind h1 {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#wordList {
+  background-color: white;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+#generatePuzzle {
+  margin-top: 25px;
+  width: 150px;
+}
+
+#savePuzzle {
+  margin-top: 10px;
+  width: 150px;
+}
+
+#printPuzzle {
+  margin-top: 10px;
+  width: 150px;
+}
+
+.solved {
+  text-decoration: line-through;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.cyan {
+  background: cyan;
+}
+
+.red {
+  background: red;
+}
+
+.green {
+  background: green;
+}
+
+.orange {
+  background: orange;
+}
+
+.pink {
+  background: pink;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.purple {
+  background: purple;
+}
+
+.brown {
+  background: brown;
+}
+
+.silver {
+  background: silver;
+}
+
+.cyanword {
+  color: cyan;
+}
+
+.redword {
+  color: red;
+}
+
+.greenword {
+  color: green;
+}
+
+.orangeword {
+  color: orange;
+}
+
+.pinkword {
+  color: pink;
+}
+
+.yellowword {
+  color: yellow;
+}
+
+.purpleword {
+  color: purple;
+}
+
+.brownword {
+  color: brown;
+}
+
+.silverword {
+  color: silver;
+}
+
+.first {
+  border-radius: 50%;
+  background: blue;
+}
+
+.hover {
+  border-radius: 50%;
+  background: orange;
+}

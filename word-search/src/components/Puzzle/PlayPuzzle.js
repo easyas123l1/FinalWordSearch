@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
-import classnames from 'classnames';
+import classnames from "classnames";
+import "./WordSearch.css";
 
 const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   console.log("words", words);
@@ -12,7 +13,7 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [size, setSize] = useState(0);
-  const [firstClickLocation, setFirstClickLocation] = useState('');
+  const [firstClickLocation, setFirstClickLocation] = useState("");
   const [puzzleSolved, setPuzzleSolved] = useState(false);
 
   useEffect(() => {
@@ -147,15 +148,15 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   };
 
   const handleColorChange = (color, word) => {
-    color = color + 'word';
+    color = color + "word";
     words[word].color = color;
     // call redux update words
-  }
+  };
 
   const handleSolve = wordIndex => {
-    words[wordIndex].solved = 'solved'
+    words[wordIndex].solved = "solved";
     // call redux update words
-  }
+  };
 
   const wordFind = e => {
     //set variables needed
@@ -163,8 +164,8 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
     let objWords = [];
     let index = -1;
     //loop thru words
-    for (let word in words) {
-      let length = words[word].text.length;
+    for (let word of words) {
+      let length = word.word.length;
       let startIndex = index + 1;
       index += length;
       let endIndex = index;
@@ -177,17 +178,17 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
         length: length,
         word: arrayWord,
         wordIndex: word
-      }
+      };
       //place the object inside an array.
       objWords.push(newWord);
     }
     //first click on puzzle starting point.
-    if (firstClickLocation === '') {
+    if (firstClickLocation === "") {
       setFirstClickLocation(selected);
       for (let line of lines) {
-        for (let i=0; i<=size-1; i++) {
+        for (let i = 0; i <= size - 1; i++) {
           if (line.text[i].id === selected) {
-            line.text[i].first = 'first'
+            line.text[i].first = "first";
           }
         }
       }
@@ -200,32 +201,45 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
         if (firstClickLocation === secondClick) {
           break;
         }
-        //if first click is the beggining or the end, and second click is the beggining or the end then that word is solved.  
-        if (firstClickLocation === word.start || firstClickLocation === word.end) {
+        //if first click is the beggining or the end, and second click is the beggining or the end then that word is solved.
+        if (
+          firstClickLocation === word.start ||
+          firstClickLocation === word.end
+        ) {
           if (secondClick === word.start || secondClick === word.end) {
             //solve word cross it off of list.
             handleSolve(word);
             //loop thru the word to get positions, loop thru lines to find the positions.  When both match add class to circle letter.
             let randomColor = Math.floor(Math.random() * 9);
-            let colors = ['cyan', 'red', 'green', 'orange', 'pink', 'yellow', 'purple', 'brown', 'silver']
-            for (let wordLength=0; wordLength<word.length; wordLength++) {
+            let colors = [
+              "cyan",
+              "red",
+              "green",
+              "orange",
+              "pink",
+              "yellow",
+              "purple",
+              "brown",
+              "silver"
+            ];
+            for (let wordLength = 0; wordLength < word.length; wordLength++) {
               for (let line of lines) {
-                for (let i=0; i<=size-1; i++) {
+                for (let i = 0; i <= size - 1; i++) {
                   if (line.text[i].id === word.word[wordLength].position) {
                     //this will circle the word.
-                    line.text[i].circle = 'circle';
+                    line.text[i].circle = "circle";
                     //set random color for circle and word found
                     line.text[i].color = colors[randomColor];
-                    handleColorChange(colors[randomColor], word)
+                    handleColorChange(colors[randomColor], word);
                   }
                 }
               }
             }
             //test if all words are solved then puzzle is solved.  VICTORY!!!
-            let checkComplete = true
+            let checkComplete = true;
             for (let index of words) {
-              if (index.solved === '') {
-                checkComplete = false
+              if (index.solved === "") {
+                checkComplete = false;
               }
             }
             if (checkComplete) {
@@ -235,23 +249,23 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
         }
       }
       for (let line of lines) {
-        for (let i=0; i<=size-1; i++) {
+        for (let i = 0; i <= size - 1; i++) {
           if (line.text[i].id === firstClickLocation) {
-            line.text[i].first = '';
+            line.text[i].first = "";
           }
         }
       }
-      setFirstClickLocation('');
-      setLines(lines)
+      setFirstClickLocation("");
+      setLines(lines);
     }
-  }
+  };
 
   const checkTwoConnect = (first, second) => {
     //seperate rows and columns
-    let firstPosition = first.replace(',','');
-    let secondPosition = second.replace(',','');
-    firstPosition = firstPosition.split(' ');
-    secondPosition = secondPosition.split(' ');
+    let firstPosition = first.replace(",", "");
+    let secondPosition = second.replace(",", "");
+    firstPosition = firstPosition.split(" ");
+    secondPosition = secondPosition.split(" ");
     let firstRow = firstPosition[0];
     let firstColumn = firstPosition[1];
     let secondRow = secondPosition[0];
@@ -264,79 +278,86 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
     //test for connection possible
     if (rowDifference === 0 || columnDifference === 0) {
       return returnArray;
-    } else if (rowDifference === columnDifference || rowDifference * -1 === columnDifference) {
+    } else if (
+      rowDifference === columnDifference ||
+      rowDifference * -1 === columnDifference
+    ) {
       return returnArray;
     } else {
       returnArray[2] = false;
       return returnArray;
     }
-  }
+  };
 
   const mouseHover = e => {
     //if position hovered is the same as start or no click then nothing happens.
-    if (firstClickLocation === '' || firstClickLocation === e.target.id) {
+    if (firstClickLocation === "" || firstClickLocation === e.target.id) {
       return;
     }
     //return the difference of row and column and if possible
-    let returnArray = checkTwoConnect(firstClickLocation, e.target.id)
+    let returnArray = checkTwoConnect(firstClickLocation, e.target.id);
     let rowDifference = returnArray[0];
     let columnDifference = returnArray[1];
     let possible = returnArray[2];
     //split rows and columns
-    let startPosition = firstClickLocation.replace(',','');
-    startPosition = startPosition.split(' ');
+    let startPosition = firstClickLocation.replace(",", "");
+    startPosition = startPosition.split(" ");
     let startRow = startPosition[0];
     let startColumn = startPosition[1];
     //start the array of positions
-    let locations = [startRow + ', ' + startColumn];
+    let locations = [startRow + ", " + startColumn];
     //if possible then loop thru all coordinates and add to an array to be styled
     if (possible) {
       while (rowDifference !== 0 || columnDifference !== 0) {
         if (rowDifference > 0) {
-          rowDifference--
-          startRow++
+          rowDifference--;
+          startRow++;
         } else if (rowDifference < 0) {
-          rowDifference++
-          startRow--
+          rowDifference++;
+          startRow--;
         }
         if (columnDifference > 0) {
-          columnDifference--
-          startColumn++
+          columnDifference--;
+          startColumn++;
         } else if (columnDifference < 0) {
-          columnDifference++
-          startColumn--
+          columnDifference++;
+          startColumn--;
         }
-        let position = startRow + ', ' + startColumn;
+        let position = startRow + ", " + startColumn;
         locations.push(position);
       }
     } else {
       return;
     }
     //add hover to class for styling
+    console.log(locations);
+    let newLines = lines;
     for (let index of locations) {
-      for (let line of lines) {
-        for (let i=0; i<= size-1; i++) {
-          if (line.text[i].id === index) {
-            line.text[i].hover = 'hover';
+      for (let line in newLines) {
+        for (let i = 0; i <= size - 1; i++) {
+          if (newLines[line].text[i].id === index) {
+            newLines[line].text[i].hover = "hover";
+            setLines(...lines, lines[line].text[i].hover);
+            console.log(lines[line].text[i].hover, "should be hover");
           }
         }
       }
     }
-    setLines(lines);
-  }
+    console.log(lines, "lines vs newLines", newLines);
+    setLines(newLines);
+  };
 
   const mouseLeave = () => {
-    for (let line of lines) {
-      for (let i=0; i<= size-1; i++) {
-        if (line.text[i].hover === 'hover') {
-          line.text[i].hover = '';
+    let newLines = lines;
+    for (let line of newLines) {
+      for (let i = 0; i <= size - 1; i++) {
+        if (line.text[i].hover === "hover") {
+          line.text[i].hover = "";
         }
       }
     }
-    setLines(lines);
-  }
-
-
+    setLines(newLines);
+  };
 
   return (
     <div>
@@ -345,7 +366,18 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
         {lines.map(line => (
           <li id={line.id} key={line.id} className={puzzle.findWordRow}>
             {line.text.map(letter => (
-              <p onMouseEnter={mouseHover} onMouseLeave={mouseLeave} id={letter.id} key={letter.id} className={classnames(letter.hover, letter.first, letter.circle, letter.color)}>
+              <p
+                onMouseEnter={mouseHover}
+                onMouseLeave={mouseLeave}
+                id={letter.id}
+                key={letter.id}
+                className={classnames(
+                  letter.hover,
+                  letter.first,
+                  letter.circle,
+                  letter.color
+                )}
+              >
                 {letter.text}
               </p>
             ))}
@@ -356,7 +388,11 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
       <h1>WORDS TO FIND:</h1>
       <ul>
         {words.map(word => (
-          <li id={word.id} key={word.id} className={classnames(word.solved, word.color)}>
+          <li
+            id={word.id}
+            key={word.id}
+            className={classnames(word.solved, word.color)}
+          >
             {word.word}
           </li>
         ))}
