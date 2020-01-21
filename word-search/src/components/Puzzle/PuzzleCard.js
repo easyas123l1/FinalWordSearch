@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getPuzzle } from "../../store/actions/puzzleAction";
-import "./WordSearch.css";
 
 const PuzzleCard = ({
   puzzle: { id, name, code, description },

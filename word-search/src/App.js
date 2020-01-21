@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./styles/global.scss";
@@ -10,8 +10,18 @@ import AddPuzzle from "./components/Puzzle/AddPuzzle";
 import CreatePuzzle from "./components/Puzzle/CreatePuzzle";
 import AllPuzzles from "./components/Puzzle/AllPuzzles";
 import PlayPuzzle from "./components/Puzzle/PlayPuzzle";
+import { getUserInfo } from "./store/actions/userAction";
 
-function App() {
+function App({ getUserInfo, loggedInStatus }) {
+  const loggedIn = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (loggedIn && !loggedInStatus) {
+      console.log("getting user info");
+      getUserInfo();
+    }
+  }, [loggedIn, getUserInfo, loggedInStatus]);
+
   return (
     <>
       <NavBar />
@@ -34,7 +44,9 @@ function App() {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    loggedInStatus: state.puzzleReducer.loggedIn
+  };
 };
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, { getUserInfo })(App);
