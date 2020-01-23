@@ -68,7 +68,20 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export const logoutUser = () => dispatch => {
   dispatch({ type: BEGIN_LOGOUT });
-  localStorage.removeItem("token");
-  localStorage.removeItem("id");
+
+  // right now logout is not working as intended.  I believe this has somehting to do with how we're using sessions.
+  // axios
+  //   .get("https://backend-word-search.herokuapp.com/api/user/logout")
+  //   .then(res => {
+  //     console.log(res);
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("id");
+  //   })
+  //   .catch(error => {
+  //     console.log(error.data);
+  //     console.log(error.res);
+  //     console.log(error);
+  //     console.log(error.message);
+  //   });
   dispatch({ type: LOGOUT_SUCCESS });
 };
