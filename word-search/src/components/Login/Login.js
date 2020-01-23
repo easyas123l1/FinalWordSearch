@@ -54,6 +54,10 @@ const Login = ({
           value={cred.password}
         />
         <button type="submit">Login</button>
+        <p>
+          If you don't have an account,{" "}
+          {<Link to="/register">click here to register</Link>}
+        </p>
       </form>
     </>
   );
