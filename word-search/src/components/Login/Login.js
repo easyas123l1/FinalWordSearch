@@ -29,7 +29,7 @@ const Login = ({
   };
 
   if (loggedIn) {
-    history.push("/");
+    history.push("/allPuzzles");
   }
 
   if (isAuthenticating) {
@@ -61,9 +61,9 @@ const Login = ({
 
 const mapStateToProps = state => {
   return {
-    isAuthenticating: state.isAuthenticating,
-    loggedIn: state.loggedIn,
-    authenticationError: state.authenticationError
+    isAuthenticating: state.userReducer.isAuthenticating,
+    loggedIn: state.userReducer.loggedIn,
+    authenticationError: state.userReducer.authenticationError
   };
 };
 
