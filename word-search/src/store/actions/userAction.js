@@ -62,3 +62,13 @@ export const getUserInfo = () => dispatch => {
       });
     });
 };
+
+export const BEGIN_LOGOUT = "BEGIN_LOGOUT";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
+export const logoutUser = () => dispatch => {
+  dispatch({ type: BEGIN_LOGOUT });
+  localStorage.removeItem("token");
+  localStorage.removeItem("id");
+  dispatch({ type: LOGOUT_SUCCESS });
+};

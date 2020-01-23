@@ -4,7 +4,9 @@ import {
   LOGIN_FAILURE,
   BEGIN_GET_USER_INFO,
   GET_USER_INFO_SUCCESS,
-  GET_USER_INFO_FAILURE
+  GET_USER_INFO_FAILURE,
+  BEGIN_LOGOUT,
+  LOGOUT_SUCCESS
 } from "../actions/userAction";
 
 const initState = {
@@ -22,7 +24,8 @@ export const userReducer = (state = initState, action) => {
     case START_LOGIN:
       return {
         ...state,
-        isAuthenticating: true
+        isAuthenticating: true,
+        authenticationError: ""
       };
 
     case LOGIN_SUCCESS:
@@ -30,6 +33,7 @@ export const userReducer = (state = initState, action) => {
         ...state,
         isAuthenticating: false,
         loggedIn: true,
+        authenticationError: "",
         user: {
           ...state.user,
           name: action.payload.user.username,
@@ -47,7 +51,8 @@ export const userReducer = (state = initState, action) => {
     case BEGIN_GET_USER_INFO:
       return {
         ...state,
-        isAuthenticating: true
+        isAuthenticating: true,
+        authenticationError: ""
       };
 
     case GET_USER_INFO_SUCCESS:
@@ -55,6 +60,7 @@ export const userReducer = (state = initState, action) => {
         ...state,
         isAuthenticating: false,
         loggedIn: true,
+        authenticationError: "",
         user: {
           ...state.user,
           name: action.payload.username,
@@ -68,6 +74,21 @@ export const userReducer = (state = initState, action) => {
         isAuthenticating: false,
         loggedIn: false,
         authenticationError: action.payload
+      };
+
+    case BEGIN_LOGOUT:
+      return {
+        ...state,
+        isAuthenticating: true,
+        authenticationError: ""
+      };
+
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        user: initState.user,
+        isAuthenticating: false,
+        loggedIn: false
       };
 
     default:
