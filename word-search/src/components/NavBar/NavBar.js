@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../store/actions/userAction";
+import puzzle from "../../styles/puzzle.module.scss";
 
 const NavBar = ({ loggedIn, logoutUser }) => {
   const history = useHistory();
@@ -13,7 +14,7 @@ const NavBar = ({ loggedIn, logoutUser }) => {
   };
 
   return (
-    <>
+    <div className={puzzle.navBar}>
       <div>
         <Link to="/AllPuzzles">All Puzzles</Link>
       </div>
@@ -35,7 +36,7 @@ const NavBar = ({ loggedIn, logoutUser }) => {
           <button onClick={logout}>Logout</button>
         </>
       )}
-    </>
+    </div>
   );
 };
 

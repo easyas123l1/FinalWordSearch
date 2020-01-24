@@ -2,3 +2,14 @@
   display: inline-block;
   min-width: 35px;
 }
+
+.navBar {
+  background-color: #374785;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+}
