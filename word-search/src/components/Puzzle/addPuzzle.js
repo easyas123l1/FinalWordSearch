@@ -9,12 +9,53 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
 
+  // the *root* function that calls the rest to build our puzzle
+  const generatePuzzle = () => {
+    const newAnswers = placeWords();
+    const newLines = [];
+    console.log(newAnswers);
+    setAnswers(newAnswers);
+    for (let i = 0; size > i; i++) {
+      const line = [];
+      for (let i2 = 0; size > i2; i2++) {
+        let letterid = "";
+        let letter = "";
+        letterid = `${i}, ${i2}`;
+        for (let answer of newAnswers) {
+          if (answer.position === letterid) {
+            letter = answer.character;
+          }
+        }
+        if (letter === "") {
+          letter = randomLetter();
+        }
+        const newLetter = {
+          text: letter,
+          id: letterid,
+          circle: "",
+          first: "",
+          color: "",
+          hover: ""
+        };
+        line.push(newLetter);
+        if (i2 + 1 === size) {
+          const newLine = {
+            text: line,
+            id: uuid.v4()
+          };
+          newLines.push(newLine);
+        }
+      }
+    }
+    setLines(newLines);
+  };
+
   // useEffect that generates a puzzle on load and every time words or size change.
   useEffect(() => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
-  }, [words, size]);
+  }, [words, size, generatePuzzle]);
 
   // selects a random position on the board
   const randomPosition = () => {
@@ -368,47 +409,6 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
-  };
-
-  // the *root* function that calls the rest to build our puzzle
-  const generatePuzzle = () => {
-    const newAnswers = placeWords();
-    const newLines = [];
-    console.log(newAnswers);
-    setAnswers(newAnswers);
-    for (let i = 0; size > i; i++) {
-      const line = [];
-      for (let i2 = 0; size > i2; i2++) {
-        let letterid = "";
-        let letter = "";
-        letterid = `${i}, ${i2}`;
-        for (let answer of newAnswers) {
-          if (answer.position === letterid) {
-            letter = answer.character;
-          }
-        }
-        if (letter === "") {
-          letter = randomLetter();
-        }
-        const newLetter = {
-          text: letter,
-          id: letterid,
-          circle: "",
-          first: "",
-          color: "",
-          hover: ""
-        };
-        line.push(newLetter);
-        if (i2 + 1 === size) {
-          const newLine = {
-            text: line,
-            id: uuid.v4()
-          };
-          newLines.push(newLine);
-        }
-      }
-    }
-    setLines(newLines);
   };
 
   // turn the data into variables for the database/call to database to save puzzle/words

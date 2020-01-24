@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getPuzzles } from "../../store/actions/puzzleAction";

@@ -17,7 +17,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       var myTxt = require("../../assets/badwords.txt");
       readTextFile(myTxt);
     }
-  }, []);
+  }, [badWords.length]);
 
   const readTextFile = file => {
     var rawFile = new XMLHttpRequest();

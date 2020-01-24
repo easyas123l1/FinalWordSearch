@@ -15,6 +15,7 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   const [size, setSize] = useState(0);
   const [firstClickLocation, setFirstClickLocation] = useState("");
   const [puzzleSolved, setPuzzleSolved] = useState(false);
+  console.log(puzzleSolved);
 
   useEffect(() => {
     setSize(Math.sqrt(code.length));
