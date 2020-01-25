@@ -25,7 +25,6 @@ export const loginUser = credentials => dispatch => {
       credentials
     )
     .then(res => {
-      console.log(res);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("id", res.data.user.id);
       // Need to fix the payload.  Once backend is updated we should get back username, email, image url, and maybe userID
@@ -48,7 +47,6 @@ export const getUserInfo = () => dispatch => {
   axiosWithAuth()
     .get(`https://backend-word-search.herokuapp.com/api/user/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: GET_USER_INFO_SUCCESS, payload: res.data });
     })
     .catch(error => {
