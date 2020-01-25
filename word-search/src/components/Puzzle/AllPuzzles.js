@@ -6,10 +6,8 @@ import PuzzleCard from "./PuzzleCard";
 import puzzle from "../../styles/puzzle.module.scss";
 
 const AllPuzzles = ({ getPuzzles, puzzles }) => {
-  console.log(puzzles);
   useEffect(() => {
     if (puzzles.length === 0) {
-      console.log("getting puzzles");
       getPuzzles();
     }
   }, [getPuzzles, puzzles.length]);
