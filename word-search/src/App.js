@@ -17,7 +17,6 @@ function App({ getUserInfo, loggedInStatus }) {
 
   useEffect(() => {
     if (loggedIn && !loggedInStatus) {
-      console.log("getting user info");
       getUserInfo();
     }
   }, [loggedIn, getUserInfo, loggedInStatus]);
