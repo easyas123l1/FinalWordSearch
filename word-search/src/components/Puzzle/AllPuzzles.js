@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { getPuzzles } from "../../store/actions/puzzleAction";
 import PuzzleCard from "./PuzzleCard";
 import puzzle from "../../styles/puzzle.module.scss";
@@ -12,7 +11,6 @@ const AllPuzzles = ({ getPuzzles, puzzles }) => {
     }
   }, [getPuzzles, puzzles.length]);
 
-  const history = useHistory();
   return (
     <div className={puzzle.background}>
       <h1>ALL PUZZLES!</h1>
