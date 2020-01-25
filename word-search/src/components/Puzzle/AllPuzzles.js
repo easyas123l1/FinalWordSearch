@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getPuzzles } from "../../store/actions/puzzleAction";
 import PuzzleCard from "./PuzzleCard";
+import puzzle from "../../styles/puzzle.module.scss";
 
 const AllPuzzles = ({ getPuzzles, puzzles }) => {
   console.log(puzzles);
@@ -15,7 +16,7 @@ const AllPuzzles = ({ getPuzzles, puzzles }) => {
 
   const history = useHistory();
   return (
-    <div>
+    <div className={puzzle.background}>
       <h1>ALL PUZZLES!</h1>
       {puzzles.map(puzzle => {
         return <PuzzleCard key={puzzle.id} puzzle={puzzle} />;

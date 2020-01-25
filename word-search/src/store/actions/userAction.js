@@ -56,6 +56,8 @@ export const getUserInfo = () => dispatch => {
       console.log(error.res);
       console.log(error);
       console.log(error.message);
+      localStorage.removeItem("token");
+      localStorage.removeItem("id");
       dispatch({
         type: GET_USER_INFO_FAILURE,
         payload: error

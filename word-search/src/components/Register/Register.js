@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import puzzle from "../../styles/puzzle.module.scss";
 
 const initialState = {
   username: "",
@@ -38,7 +39,7 @@ const Register = props => {
     }
   };
   return (
-    <>
+    <div className={puzzle.background}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -66,7 +67,7 @@ const Register = props => {
       <p>
         If you have an account, <Link to="/login">Click here to sign in</Link>.
       </p>
-    </>
+    </div>
   );
 };
 

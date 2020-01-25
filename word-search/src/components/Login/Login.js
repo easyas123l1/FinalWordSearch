@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-
+import puzzle from "../../styles/puzzle.module.scss";
 import { loginUser } from "../../store/actions/userAction";
 
 const initialState = {
@@ -37,7 +37,7 @@ const Login = ({
   }
 
   return (
-    <>
+    <div className={puzzle.background}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -59,7 +59,7 @@ const Login = ({
           {<Link to="/register">click here to register</Link>}
         </p>
       </form>
-    </>
+    </div>
   );
 };
 

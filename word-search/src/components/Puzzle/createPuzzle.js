@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { generatePuzzle } from "../../store/actions/puzzleAction";
+import puzzle from "../../styles/puzzle.module.scss";
 
 const CreatePuzzle = ({ generatePuzzle }) => {
   const [words, setWords] = useState([]);
@@ -137,7 +138,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   };
 
   return (
-    <div>
+    <div className={puzzle.background}>
       <p>1. Name your puzzle:</p>
       <input
         type="text"

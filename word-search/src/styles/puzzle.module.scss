@@ -12,4 +12,24 @@
   align-items: center;
   z-index: 1000;
   position: fixed;
+  text-decoration: none;
+}
+
+.background {
+  background-color: #a8d0e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.aTag {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: orange;
 }

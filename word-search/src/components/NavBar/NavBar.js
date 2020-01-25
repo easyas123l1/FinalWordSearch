@@ -16,22 +16,30 @@ const NavBar = ({ loggedIn, logoutUser }) => {
   return (
     <div className={puzzle.navBar}>
       <div>
-        <Link to="/AllPuzzles">All Puzzles</Link>
+        <Link to="/AllPuzzles" className={puzzle.aTag}>
+          All Puzzles
+        </Link>
       </div>
       {!loggedIn && (
         <>
           <div>
-            <Link to="/register">Register</Link>
+            <Link to="/register" className={puzzle.aTag}>
+              Register
+            </Link>
           </div>
           <div>
-            <Link to="/login">Login</Link>
+            <Link to="/login" className={puzzle.aTag}>
+              Login
+            </Link>
           </div>
         </>
       )}
       {loggedIn && (
         <>
           <div>
-            <Link to="/createPuzzle">Create Puzzle</Link>
+            <Link to="/createPuzzle" className={puzzle.aTag}>
+              Create Puzzle
+            </Link>
           </div>
           <button onClick={logout}>Logout</button>
         </>
