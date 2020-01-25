@@ -6,28 +6,18 @@ import classnames from "classnames";
 import "./WordSearch.css";
 
 const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
-  console.log("words", words);
-  console.log("name", name);
-  console.log("code", code);
-  console.log("description", description);
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [size, setSize] = useState(0);
   const [firstClickLocation, setFirstClickLocation] = useState("");
   const [puzzleSolved, setPuzzleSolved] = useState(false);
-  console.log(puzzleSolved);
+  // console.log(puzzleSolved);
 
   useEffect(() => {
     setSize(Math.sqrt(code.length));
     buildLines();
     buildAnswers();
   }, [code]);
-
-  const buildPuzzle = e => {
-    e.preventDefault();
-    buildLines();
-    buildAnswers();
-  };
 
   const buildLines = () => {
     let charPosition = 0;
@@ -380,7 +370,6 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
           </li>
         ))}
       </ul>
-      <button onClick={buildPuzzle}>Build Puzzle!</button>
       <h1>WORDS TO FIND:</h1>
       <ul>
         {words.map(word => (
