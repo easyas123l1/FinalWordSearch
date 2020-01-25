@@ -11,9 +11,7 @@ const PuzzleCard = ({
   const history = useHistory();
   const playPuzzle = e => {
     e.preventDefault();
-    console.log("clicked id", id);
     getPuzzle(id);
-    console.log("playing");
     history.push("/playPuzzle");
   };
 
