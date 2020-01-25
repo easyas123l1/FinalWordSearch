@@ -356,7 +356,7 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   };
 
   return (
-    <div>
+    <div className={puzzle.puzzle}>
       <h1>{name}</h1>
       <ul onClick={wordFind}>
         {lines.map(line => (
