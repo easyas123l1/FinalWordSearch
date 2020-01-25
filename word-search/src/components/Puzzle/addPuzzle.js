@@ -414,7 +414,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const savePuzzle = e => {
     const wordPosDir = wordPositionDirection();
     let letters = [];
-    lines.map(line => {
+    lines.forEach(line => {
       line.text.map(letter => letters.push(letter.text));
     });
     letters = letters.join("");
