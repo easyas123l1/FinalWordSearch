@@ -13,7 +13,6 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const generatePuzzle = () => {
     const newAnswers = placeWords();
     const newLines = [];
-    console.log(newAnswers);
     setAnswers(newAnswers);
     for (let i = 0; size > i; i++) {
       const line = [];
@@ -413,18 +412,12 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
 
   // turn the data into variables for the database/call to database to save puzzle/words
   const savePuzzle = e => {
-    console.log(e);
     const wordPosDir = wordPositionDirection();
-    console.log(wordPosDir);
-    console.log(lines);
-    console.log(answers);
     let letters = [];
     lines.map(line => {
       line.text.map(letter => letters.push(letter.text));
     });
     letters = letters.join("");
-    console.log(letters);
-    console.log(typeof letters);
     // word position direction
     // letters === code for puzzle.
     // title
