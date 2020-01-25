@@ -28,7 +28,6 @@ export const reduxSavePuzzle = puzzle => dispatch => {
   axiosWithAuth()
     .post("https://backend-word-search.herokuapp.com/api/puzzle", puzzle)
     .then(res => {
-      console.log(res.data);
       return dispatch({ type: SAVE_SUCCESS, payload: res.data });
     })
     .catch(err => {
