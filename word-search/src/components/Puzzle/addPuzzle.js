@@ -54,7 +54,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
-  }, [words, size, generatePuzzle]);
+  }, [words, size]);
 
   // selects a random position on the board
   const randomPosition = () => {
