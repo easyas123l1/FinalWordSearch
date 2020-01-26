@@ -4,7 +4,7 @@
 }
 
 .wordsToFind {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.411);
   position: fixed;
   z-index: 0;
   right: 0;
@@ -12,6 +12,7 @@
   text-align: center;
   width: 13%;
   text-decoration: none;
+  font-weight: 900;
 }
 
 .wordsToFind ul {
