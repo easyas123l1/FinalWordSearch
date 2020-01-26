@@ -8,7 +8,8 @@ import {
   PUZZLES_FAILURE,
   GET_PUZZLE,
   PUZZLE_SUCCESS,
-  PUZZLE_FAILURE
+  PUZZLE_FAILURE,
+  UPDATE_PUZZLE
 } from "../actions/puzzleAction";
 
 const initState = {
@@ -116,6 +117,12 @@ export const puzzleReducer = (state = initState, action) => {
         ...state,
         getPuzzle: false,
         errorMessage: action.payload
+      };
+
+    case UPDATE_PUZZLE:
+      return {
+        errorMessage: "",
+        playPuzzleWords: action.payload
       };
 
     default:
