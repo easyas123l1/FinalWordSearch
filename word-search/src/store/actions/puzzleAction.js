@@ -75,3 +75,13 @@ export const getPuzzle = id => dispatch => {
       dispatch({ type: PUZZLE_FAILURE, payload: err });
     });
 };
+
+export const UPDATE_PUZZLE = "UPDATE_PUZZLE";
+export const UPDATE_PUZZLE_SUCCESS = "UPDATE_PUZZLE_SUCCESS";
+export const UPDATE_PUZZLE_FAILURE = "UPDATE_PUZZLE_FAILURE";
+
+// axios call to update users progress on puzzle
+export const updatePuzzle = words => dispatch => {
+  dispatch({ type: UPDATE_PUZZLE, payload: words });
+  // will eventually call axios.
+};
