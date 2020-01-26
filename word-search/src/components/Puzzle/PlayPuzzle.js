@@ -346,43 +346,47 @@ const PlayPuzzle = ({ words, name, code, description, rating, creator }) => {
   };
 
   return (
-    <div className={puzzle.puzzle}>
-      <h1>{name}</h1>
-      <ul onClick={wordFind}>
-        {lines.map(line => (
-          <li id={line.id} key={line.id} className={puzzle.findWordRow}>
-            {line.text.map(letter => (
-              <p
-                onMouseEnter={mouseHover}
-                onMouseLeave={mouseLeave}
-                id={letter.id}
-                key={letter.id}
-                className={classnames(
-                  letter.hover,
-                  letter.first,
-                  letter.circle,
-                  letter.color
-                )}
-              >
-                {letter.text}
-              </p>
-            ))}
-          </li>
-        ))}
-      </ul>
-      <h1>WORDS TO FIND:</h1>
-      <ul>
-        {words.map(word => (
-          <li
-            id={word.id}
-            key={word.id}
-            className={classnames(word.solved, word.color)}
-          >
-            {word.word}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className={puzzle.puzzle}>
+        <h1>{name}</h1>
+        <ul onClick={wordFind}>
+          {lines.map(line => (
+            <li id={line.id} key={line.id} className={puzzle.findWordRow}>
+              {line.text.map(letter => (
+                <p
+                  onMouseEnter={mouseHover}
+                  onMouseLeave={mouseLeave}
+                  id={letter.id}
+                  key={letter.id}
+                  className={classnames(
+                    letter.hover,
+                    letter.first,
+                    letter.circle,
+                    letter.color
+                  )}
+                >
+                  {letter.text}
+                </p>
+              ))}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={puzzle.wordsToFind}>
+        <h1>WORDS TO FIND:</h1>
+        <ul>
+          {words.map(word => (
+            <li
+              id={word.id}
+              key={word.id}
+              className={classnames(word.solved, word.color)}
+            >
+              {word.word}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
