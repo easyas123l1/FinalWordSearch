@@ -3,15 +3,30 @@
   min-width: 35px;
 }
 
+.wordsToFind {
+  background-color: white;
+  position: fixed;
+  z-index: 0;
+  right: 0;
+  top: 25%;
+  text-align: center;
+  width: 13%;
+  text-decoration: none;
+}
+
+.wordsToFind ul {
+  list-style: none;
+}
+
 .puzzle {
   position: absolute;
-  top: 40px;
+  top: 55px;
   z-index: -1;
   font-weight: 700;
   padding: 30px;
   line-height: 1.75;
   color: black;
-  font-size: 20px;
+  font-size: 2rem;
   float: left;
 }
 
@@ -23,6 +38,8 @@
 }
 
 .puzzle h1 {
+  font-weight: 700;
+  font-size: 2rem;
   text-align: center;
 }
 
