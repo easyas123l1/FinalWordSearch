@@ -20,13 +20,25 @@ const PlayPuzzle = ({
   const [size, setSize] = useState(0);
   const [firstClickLocation, setFirstClickLocation] = useState("");
   const [puzzleSolved, setPuzzleSolved] = useState(false);
+  const [time, setTime] = useState(0);
+  const [active, setActive] = useState(false);
   // console.log(puzzleSolved);
 
   useEffect(() => {
     setSize(Math.sqrt(code.length));
     buildLines();
     buildAnswers();
+    setActive(true);
   }, [code]);
+
+  useEffect(() => {
+    let interval = null;
+    if (active) {
+      interval = setTimeout(() => {
+        setTime(time + 1);
+      }, 1000);
+    }
+  });
 
   const buildLines = () => {
     let charPosition = 0;
@@ -396,6 +408,7 @@ const PlayPuzzle = ({
         </ul>
       </div>
       <div className={puzzle.wordsToFind}>
+        <p>{time} seconds </p>
         <h1>WORDS TO FIND:</h1>
         <ul>
           {words.map(word => (
