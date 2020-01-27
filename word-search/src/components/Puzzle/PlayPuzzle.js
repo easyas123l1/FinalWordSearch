@@ -147,16 +147,18 @@ const PlayPuzzle = ({
     setAnswers(newAnswers);
   };
 
-  const handleColorChange = (color, word) => {
+  const handleColorChange = (color, solveWord) => {
     let newWords = JSON.parse(JSON.stringify(words));
-    console.log(color);
-    console.log(word);
     color = color + "word";
+    for (let word of newWords) {
+      if (solveWord.wordIndex.word === word.word) {
+        word.color = color;
+      }
+    }
+    // call redux update words
+    updatePuzzle(newWords);
     // in order to get both these function to work we will need to edit the original words object.
     // we will add a couple more properties on the back end called solved
-    // words[word].color = color;
-    // updatePuzzle(newWords);
-    // call redux update words
   };
 
   const handleSolve = solveWord => {
@@ -164,12 +166,10 @@ const PlayPuzzle = ({
     for (let word of newWords) {
       if (solveWord.wordIndex.word === word.word) {
         word.solved = "solved";
-        console.log(word.solved);
       }
     }
-    console.log(newWords);
-    updatePuzzle(newWords);
     // call redux update words
+    updatePuzzle(newWords);
   };
 
   const wordFind = e => {
