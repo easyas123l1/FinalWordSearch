@@ -121,6 +121,7 @@ export const puzzleReducer = (state = initState, action) => {
 
     case UPDATE_PUZZLE:
       return {
+        ...state,
         errorMessage: "",
         playPuzzleWords: action.payload
       };
