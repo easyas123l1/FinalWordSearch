@@ -2,10 +2,6 @@ p {
   text-align: center;
 }
 
-.solved {
-  text-decoration: line-through;
-}
-
 .circle {
   border-radius: 50%;
 }
@@ -47,38 +43,47 @@ p {
 }
 
 .cyanword {
+  text-decoration: line-through;
   color: cyan;
 }
 
 .redword {
+  text-decoration: line-through;
   color: red;
 }
 
 .greenword {
+  text-decoration: line-through;
   color: green;
 }
 
 .orangeword {
+  text-decoration: line-through;
   color: orange;
 }
 
 .pinkword {
+  text-decoration: line-through;
   color: pink;
 }
 
 .yellowword {
+  text-decoration: line-through;
   color: yellow;
 }
 
 .purpleword {
+  text-decoration: line-through;
   color: purple;
 }
 
 .brownword {
+  text-decoration: line-through;
   color: brown;
 }
 
 .silverword {
+  text-decoration: line-through;
   color: silver;
 }
 
@@ -89,5 +94,5 @@ p {
 
 .hover {
   border-radius: 50%;
-  background: orange;
+  background: lightblue;
 }
