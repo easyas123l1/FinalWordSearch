@@ -23,7 +23,7 @@ const PlayPuzzle = ({
   const [time, setTime] = useState(0);
   const [active, setActive] = useState(false);
   // console.log(puzzleSolved);
-  console.log(words);
+  // console.log(words);
 
   useEffect(() => {
     setSize(Math.sqrt(code.length));
