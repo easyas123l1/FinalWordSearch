@@ -23,6 +23,7 @@ const PlayPuzzle = ({
   const [time, setTime] = useState(0);
   const [active, setActive] = useState(false);
   // console.log(puzzleSolved);
+  console.log(words);
 
   useEffect(() => {
     setSize(Math.sqrt(code.length));
@@ -165,23 +166,13 @@ const PlayPuzzle = ({
     for (let word of newWords) {
       if (solveWord.wordIndex.word === word.word) {
         word.color = color;
+        word.solved = "solved";
       }
     }
     // call redux update words
     updatePuzzle(newWords);
     // in order to get both these function to work we will need to edit the original words object.
     // we will add a couple more properties on the back end called solved
-  };
-
-  const handleSolve = solveWord => {
-    let newWords = JSON.parse(JSON.stringify(words));
-    for (let word of newWords) {
-      if (solveWord.wordIndex.word === word.word) {
-        word.solved = "solved";
-      }
-    }
-    // call redux update words
-    updatePuzzle(newWords);
   };
 
   const wordFind = e => {
@@ -233,8 +224,6 @@ const PlayPuzzle = ({
           firstClickLocation === word.end
         ) {
           if (secondClick === word.start || secondClick === word.end) {
-            //solve word cross it off of list.
-            handleSolve(word);
             //loop thru the word to get positions, loop thru lines to find the positions.  When both match add class to circle letter.
             let randomColor = Math.floor(Math.random() * 9);
             let colors = [
@@ -412,11 +401,7 @@ const PlayPuzzle = ({
         <h1>WORDS TO FIND:</h1>
         <ul>
           {words.map(word => (
-            <li
-              id={word.id}
-              key={word.id}
-              className={classnames(word.solved, word.color)}
-            >
+            <li id={word.id} key={word.id} className={word.color}>
               {word.word}
             </li>
           ))}
