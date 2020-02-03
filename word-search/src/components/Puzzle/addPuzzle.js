@@ -2,12 +2,26 @@ import React, { useState, useEffect } from "react";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
+import "./WordSearch.css";
 import { reduxSavePuzzle } from "../../store/actions/puzzleAction";
 
 const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
+  const [showWords, setShowWords] = useState(false);
+  console.log(answers, "answers");
+  console.log(words, "words");
+  console.log(lines, "lines");
+
+  useEffect(() => {
+    // my guess on how to do this is have loop thru words to get text of each one count the length and then pull that many out objects out of the array answers.  For puzzles with lots of words this would be painful slow process so maybe we build an array of id's with color and then loop thru lines and update at the end.
+    if (showWords) {
+      // if true we need to color the words use PlayPuzzle.js as an example
+    } else {
+      // if false we make sure words are not shown solved.
+    }
+  }, [showWords]);
 
   // the *root* function that calls the rest to build our puzzle
   const generatePuzzle = () => {
@@ -478,6 +492,14 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     return final;
   };
 
+  const handleToggleWords = () => {
+    if (showWords) {
+      setShowWords(false);
+    } else {
+      setShowWords(true);
+    }
+  };
+
   // !!!NOT COMPLETED!!! THIS FUNCTION SEND USER BACK TO PREVIOUS PAGE TO EDIT PUZZLE!  Genius!
   const editPuzzle = e => {
     console.log(e);
@@ -491,7 +513,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
           {lines.map(line => (
             <li id={line.id} key={line.id} className={puzzle.findWordRow}>
               {line.text.map(letter => (
-                <p id={letter.id} key={letter.id}>
+                <p id={letter.id} key={letter.id} className={letter.color}>
                   {letter.text}
                 </p>
               ))}
@@ -510,6 +532,15 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
             ))}
         </ul>
         <div>
+          <label>
+            Show Words:
+            <input
+              name="showWords"
+              type="checkbox"
+              checked={showWords}
+              onChange={handleToggleWords}
+            />
+          </label>
           <button onClick={regeneratePuzzle}>Generate new Puzzle</button>
           <button onClick={savePuzzle}>Save Puzzle</button>
           <button onClick={editPuzzle}>Edit Puzzle</button>

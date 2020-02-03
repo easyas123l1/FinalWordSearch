@@ -92,7 +92,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 
     for (let word of words) {
       if (word.text === text) {
-        console.log("same word error");
+        alert("Please do not use the same word");
         return;
       }
     }
