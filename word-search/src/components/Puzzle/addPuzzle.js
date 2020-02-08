@@ -16,8 +16,38 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
 
   useEffect(() => {
     // my guess on how to do this is have loop thru words to get text of each one count the length and then pull that many out objects out of the array answers.  For puzzles with lots of words this would be painful slow process so maybe we build an array of id's with color and then loop thru lines and update at the end.
+    // create a for loop to loop thru words.  We will loop thru count each word.text
     if (showWords) {
-      // if true we need to color the words use PlayPuzzle.js as an example
+      const colorArray = [];
+      let colors = [
+        "cyan",
+        "red",
+        "green",
+        "orange",
+        "pink",
+        "yellow",
+        "purple",
+        "brown",
+        "silver"
+      ];
+      let colorNumber = 0;
+      for (let word of words) {
+        let position = 0;
+        let newPosition = position + word.text.length;
+        for (let i = position; i < newPosition; i++) {
+          colorNumber = (colorNumber % colors.length) - 1;
+          let color = colors[colorNumber];
+          const newObj = {
+            position: answers[i].position,
+            color: color
+          };
+          colorArray.push(newObj);
+        }
+        colorNumber++;
+      }
+      // last we need to loop thru lines and colorArray and when a position
+      // matches that is when we will we will update color in lines to color in
+      // color array
     } else {
       // if false we make sure words are not shown solved.
     }
