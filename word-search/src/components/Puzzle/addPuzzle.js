@@ -64,7 +64,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
       // if false we make sure words are not shown/solved.
       setLines(newLines);
     }
-  }, [showWords]);
+  }, [showWords, answers, lines, words]);
 
   // the *root* function that calls the rest to build our puzzle
   const generatePuzzle = () => {
