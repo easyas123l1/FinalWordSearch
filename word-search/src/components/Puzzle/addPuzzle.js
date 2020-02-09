@@ -10,9 +10,6 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
   const [showWords, setShowWords] = useState(false);
-  console.log(answers, "answers");
-  console.log(words, "words");
-  console.log(lines, "lines");
 
   useEffect(() => {
     // my guess on how to do this is have loop thru words to get text of each one count the length and then pull that many out objects out of the array answers.  For puzzles with lots of words this would be painful slow process so maybe we build an array of id's with color and then loop thru lines and update at the end.
@@ -31,11 +28,11 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
         "silver"
       ];
       let colorNumber = 0;
+      let position = 0;
       for (let word of words) {
-        let position = 0;
         let newPosition = position + word.text.length;
         for (let i = position; i < newPosition; i++) {
-          colorNumber = (colorNumber % colors.length) - 1;
+          colorNumber = colorNumber % (colors.length - 1);
           let color = colors[colorNumber];
           const newObj = {
             position: answers[i].position,
@@ -43,13 +40,29 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
           };
           colorArray.push(newObj);
         }
-        colorNumber++;
+        position = newPosition;
+        ++colorNumber;
       }
-      // last we need to loop thru lines and colorArray and when a position
-      // matches that is when we will we will update color in lines to color in
-      // color array
+      let newLines = JSON.parse(JSON.stringify(lines));
+      for (let lines of newLines) {
+        for (let line of lines.text) {
+          for (let position of colorArray) {
+            if (position.position === line.id) {
+              line.color = position.color;
+            }
+          }
+        }
+      }
+      setLines(newLines);
     } else {
-      // if false we make sure words are not shown solved.
+      let newLines = JSON.parse(JSON.stringify(lines));
+      for (let lines of newLines) {
+        for (let line of lines.text) {
+          line.color = "";
+        }
+      }
+      // if false we make sure words are not shown/solved.
+      setLines(newLines);
     }
   }, [showWords]);
 
