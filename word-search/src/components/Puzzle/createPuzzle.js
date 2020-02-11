@@ -162,7 +162,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
           <button type="submit">Add word # {words.length + 1}</button>
           <button onClick={handleRemove}>Remove word</button>
         </form>
-        <form>
+        <form className={puzzle.addWord}>
           <p className={puzzle.space}>3. Pick a size (10-50)</p>
           <input
             type="number"
