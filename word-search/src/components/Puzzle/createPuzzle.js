@@ -139,49 +139,54 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 
   return (
     <div className={puzzle.background}>
-      <p>1. Name your puzzle:</p>
-      <input
-        type="text"
-        name="title"
-        onChange={changeTitle}
-        placeholder="Title of puzzle!"
-        value={title}
-      />
-      <p>2. Add some words:</p>
-      <form onSubmit={handleSubmit}>
+      <div className={puzzle.createPuzzle}>
+        <p className={puzzle.space}>1. Name the puzzle:</p>
         <input
           type="text"
-          name="word"
-          onChange={changeHandler}
-          placeholder="Words Here!"
-          value={text}
+          name="title"
+          onChange={changeTitle}
+          placeholder="Title the puzzle!"
+          value={title}
+          className={puzzle.space}
         />
-        <button type="submit">Add word # {words.length + 1}</button>
-        <button onClick={handleRemove}>Remove word</button>
-      </form>
-      <form>
-        <p>3. Pick a size (10-50)</p>
-        <input
-          type="number"
-          name="size"
-          onChange={changeSize}
-          min="10"
-          max="50"
-          value={size}
-        />
-      </form>
-      <div>
-        <h1>Words to find!</h1>
-        <ul onClick={activateDelete}>
-          {words &&
-            words.map((word, i) => (
-              <li id={i} key={word.id}>
-                #{i + 1}: {word.text}
-              </li>
-            ))}
-        </ul>
+        <p className={puzzle.space}>2. Add some words:</p>
+        <form onSubmit={handleSubmit} className={puzzle.addWord}>
+          <input
+            type="text"
+            name="word"
+            onChange={changeHandler}
+            placeholder="Words Here!"
+            value={text}
+            className={puzzle.space}
+          />
+          <button type="submit">Add word # {words.length + 1}</button>
+          <button onClick={handleRemove}>Remove word</button>
+        </form>
+        <form>
+          <p className={puzzle.space}>3. Pick a size (10-50)</p>
+          <input
+            type="number"
+            name="size"
+            onChange={changeSize}
+            min="10"
+            max="50"
+            value={size}
+            className={puzzle.space}
+          />
+        </form>
+        <div>
+          <h1>Words to find!</h1>
+          <ul onClick={activateDelete}>
+            {words &&
+              words.map((word, i) => (
+                <li id={i} key={word.id}>
+                  #{i + 1}: {word.text}
+                </li>
+              ))}
+          </ul>
+        </div>
+        <button onClick={generate}>4. Generate Puzzle</button>
       </div>
-      <button onClick={generate}>4. Generate Puzzle</button>
     </div>
   );
 };
