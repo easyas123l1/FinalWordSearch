@@ -174,8 +174,9 @@ const CreatePuzzle = ({ generatePuzzle }) => {
             className={puzzle.space}
           />
         </form>
-        <div>
+        <div className={puzzle.addWord}>
           <h1>Words to find!</h1>
+          <p>to remove words click on the word remove word button</p>
           <ul onClick={activateDelete}>
             {words &&
               words.map((word, i) => (
