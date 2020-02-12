@@ -96,3 +96,8 @@ p {
   border-radius: 50%;
   background: lightblue;
 }
+
+.true {
+  background-color: yellow;
+  color: red;
+}
