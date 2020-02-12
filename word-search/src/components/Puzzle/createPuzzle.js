@@ -112,7 +112,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
   const activateDelete = e => {
     let clickWord = e.target.innerText.split(" ");
     clickWord = clickWord[1];
-    let newWords = words;
+    let newWords = JSON.parse(JSON.stringify(words));
     for (let word of newWords) {
       if (clickWord === word.text) {
         if (word.activate) {
@@ -123,6 +123,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       }
     }
     setWords(newWords);
+    console.log(words);
   };
 
   const generate = e => {
@@ -177,14 +178,16 @@ const CreatePuzzle = ({ generatePuzzle }) => {
         <div className={puzzle.addWord}>
           <h1>Words to find!</h1>
           <p>to remove words click on the word remove word button</p>
-          <ul onClick={activateDelete}>
-            {words &&
-              words.map((word, i) => (
-                <li id={i} key={word.id}>
-                  #{i + 1}: {word.text}
-                </li>
-              ))}
-          </ul>
+          <div className={puzzle.createFindWords}>
+            <ul onClick={activateDelete}>
+              {words &&
+                words.map((word, i) => (
+                  <li id={i} key={word.id} className={word.activate.toString()}>
+                    #{i + 1}: {word.text}
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
         <button onClick={generate}>4. Generate Puzzle</button>
       </div>
