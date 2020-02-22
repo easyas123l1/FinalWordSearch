@@ -41,7 +41,9 @@ const NavBar = ({ loggedIn, logoutUser }) => {
               Create Puzzle
             </Link>
           </div>
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout} className={puzzle.logout}>
+            Logout
+          </button>
         </>
       )}
     </div>
