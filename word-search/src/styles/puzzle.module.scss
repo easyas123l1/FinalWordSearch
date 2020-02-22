@@ -134,3 +134,14 @@ a:hover {
   height: calc(100vh - 64px);
   width: 100%;
 }
+
+.logout {
+  background-color: #374785;
+  border: none;
+  color: white;
+}
+
+.logout:hover {
+  color: orange;
+  cursor: pointer;
+}
