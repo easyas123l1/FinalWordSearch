@@ -145,3 +145,33 @@ a:hover {
   color: orange;
   cursor: pointer;
 }
+
+.login {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 25px;
+}
+
+.username {
+  text-align: center;
+  width: 80%;
+  margin: 3% auto;
+  line-height: 2.6;
+}
+
+.loginButton {
+  width: 80%;
+  margin: 3% auto;
+  height: 60px;
+  background-color: #374785;
+  color: white;
+  border-radius: 25px;
+}
+
+.loginText {
+  margin: 2% auto;
+  font-size: 2rem;
+}
