@@ -40,33 +40,39 @@ const Register = props => {
   };
   return (
     <div className={puzzle.background}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={puzzle.login}>
         <input
           type="text"
           name="username"
           onChange={changeHandler}
-          placeholder="username"
+          placeholder="Username or Email Address"
           value={cred.username}
+          className={puzzle.username}
         />
         <input
           type="password"
           name="password"
           onChange={changeHandler}
-          placeholder="password"
+          placeholder="Password"
           value={cred.password}
+          className={puzzle.username}
         />
         <input
           type="text"
           name="verpassword"
           onChange={changeHandler}
-          placeholder="verify password"
+          placeholder="Verify Password"
           value={cred.verpassword}
+          className={puzzle.username}
         />
-        <button type="submit">Create Account</button>
+        <button type="submit" className={puzzle.loginButton}>
+          Create Account
+        </button>
+        <p className={puzzle.loginText}>
+          If you have an account, <Link to="/login">Click here to sign in</Link>
+          .
+        </p>
       </form>
-      <p>
-        If you have an account, <Link to="/login">Click here to sign in</Link>.
-      </p>
     </div>
   );
 };
