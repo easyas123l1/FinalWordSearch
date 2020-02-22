@@ -38,23 +38,27 @@ const Login = ({
 
   return (
     <div className={puzzle.background}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={puzzle.login}>
         <input
           type="text"
           name="username"
           onChange={changeHandler}
-          placeholder="username"
+          placeholder="Username or Email Address"
           value={cred.username}
+          className={puzzle.username}
         />
         <input
           type="password"
           name="password"
           onChange={changeHandler}
-          placeholder="password"
+          placeholder="Password"
           value={cred.password}
+          className={puzzle.username}
         />
-        <button type="submit">Login</button>
-        <p>
+        <button type="submit" className={puzzle.loginButton}>
+          Login
+        </button>
+        <p className={puzzle.loginText}>
           If you don't have an account,{" "}
           {<Link to="/register">click here to register</Link>}
         </p>
