@@ -123,7 +123,6 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       }
     }
     setWords(newWords);
-    console.log(words);
   };
 
   const generate = e => {
@@ -134,7 +133,6 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       size
     };
     generatePuzzle(puzzle);
-    console.log("generate puzzle button clicked!");
     history.push("/addPuzzle");
   };
 
