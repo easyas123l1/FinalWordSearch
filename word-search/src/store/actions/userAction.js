@@ -50,10 +50,6 @@ export const getUserInfo = () => dispatch => {
       dispatch({ type: GET_USER_INFO_SUCCESS, payload: res.data });
     })
     .catch(error => {
-      console.log(error.data);
-      console.log(error.res);
-      console.log(error);
-      console.log(error.message);
       localStorage.removeItem("token");
       localStorage.removeItem("id");
       dispatch({
