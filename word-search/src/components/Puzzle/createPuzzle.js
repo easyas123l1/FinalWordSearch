@@ -160,8 +160,9 @@ const CreatePuzzle = ({ generatePuzzle }) => {
             value={text}
             className={puzzle.space}
           />
-          <button type="submit">Add word # {words.length + 1}</button>
-          <button onClick={handleRemove}>Remove word</button>
+          <button type="submit" className={puzzle.loginButton}>
+            Add word # {words.length + 1}
+          </button>
         </form>
         <form className={puzzle.addWord}>
           <p className={puzzle.space}>3. Pick a size (10-50)</p>
@@ -189,6 +190,9 @@ const CreatePuzzle = ({ generatePuzzle }) => {
             </ul>
           </div>
         </div>
+        <button onClick={handleRemove} className={puzzle.loginButton}>
+          Remove word(s)
+        </button>
         <button onClick={generate}>4. Generate Puzzle</button>
       </div>
     </div>
