@@ -176,7 +176,10 @@ const CreatePuzzle = ({ generatePuzzle }) => {
         </form>
         <div className={puzzle.addWord}>
           <h1>Words to find!</h1>
-          <p>to remove words click on the word remove word button</p>
+          <p>
+            to remove words click on the word, and click on the remove word
+            button
+          </p>
           <div className={puzzle.createFindWords}>
             <ul onClick={activateDelete}>
               {words &&
@@ -188,10 +191,14 @@ const CreatePuzzle = ({ generatePuzzle }) => {
             </ul>
           </div>
         </div>
-        <button onClick={handleRemove} className={puzzle.loginButton}>
-          Remove word(s)
-        </button>
-        <button onClick={generate}>4. Generate Puzzle</button>
+        <div className={puzzle.buttonsDiv}>
+          <button onClick={handleRemove} className={puzzle.removeButton}>
+            Remove word(s)
+          </button>
+          <button onClick={generate} className={puzzle.generateButton}>
+            4. Generate Puzzle
+          </button>
+        </div>
       </div>
     </div>
   );
