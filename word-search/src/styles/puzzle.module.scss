@@ -197,6 +197,7 @@ a:hover {
 .allPuzzle {
   background-color: #a8d0e6;
   height: calc(100vh - 64px);
+  overflow: auto;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
