@@ -187,8 +187,8 @@ const AllPuzzles = ({ getPuzzles, puzzles }) => {
 
   return (
     <div className={puzzle.background}>
+      <h1 className={puzzle.puzzleHeader}>ALL PUZZLES!</h1>
       <div className={puzzle.allPuzzle}>
-        <h1 className={puzzle.puzzleHeader}>ALL PUZZLES!</h1>
         {puzzles.map(puzzle => {
           return <PuzzleCard key={puzzle.id} puzzle={puzzle} />;
         })}
