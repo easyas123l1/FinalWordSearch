@@ -223,3 +223,28 @@ a:hover {
 .cardDescription {
   font-size: 1.75rem;
 }
+
+.generateButton {
+  width: 80%;
+  margin: 3% auto;
+  height: 60px;
+  background-color: #374785;
+  color: white;
+  border-radius: 25px;
+}
+
+.removeButton {
+  width: 80%;
+  margin: 3% auto;
+  height: 60px;
+  background-color: #374785;
+  color: white;
+  border-radius: 25px;
+}
+
+.buttonsDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
