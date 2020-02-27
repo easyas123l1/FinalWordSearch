@@ -20,6 +20,11 @@ const NavBar = ({ loggedIn, logoutUser }) => {
           All Puzzles
         </Link>
       </div>
+      <div>
+        <Link to="/worldRecord" className={puzzle.aTag}>
+          World Record
+        </Link>
+      </div>
       {!loggedIn && (
         <>
           <div>
