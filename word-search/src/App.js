@@ -10,6 +10,7 @@ import AddPuzzle from "./components/Puzzle/AddPuzzle";
 import CreatePuzzle from "./components/Puzzle/CreatePuzzle";
 import AllPuzzles from "./components/Puzzle/AllPuzzles";
 import PlayPuzzle from "./components/Puzzle/PlayPuzzle";
+import WorldRecord from "./components/WorldRecord/WorldRecord";
 import { getUserInfo } from "./store/actions/userAction";
 
 function App({ getUserInfo, loggedInStatus }) {
@@ -29,6 +30,7 @@ function App({ getUserInfo, loggedInStatus }) {
         <Route path="/login" component={Login} />
         <Route path="/allPuzzles" component={AllPuzzles} />
         <Route path="/playPuzzle" component={PlayPuzzle} />
+        <Route path="/worldRecord" component={WorldRecord} />
         <PrivateRoute path="/addPuzzle">
           <AddPuzzle />
         </PrivateRoute>
