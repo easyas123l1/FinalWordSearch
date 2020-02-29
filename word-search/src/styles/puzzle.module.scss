@@ -248,3 +248,17 @@ a:hover {
   justify-content: center;
   flex-direction: column;
 }
+
+.backgroundWorld {
+  position: absolute;
+  top: 64px;
+  z-index: -1;
+  background-color: #a8d0e6;
+  height: 100%;
+  width: max-content;
+}
+
+.worldRecord {
+  display: inline-block;
+  min-width: 35px;
+}
