@@ -40,11 +40,11 @@ const WorldRecord = () => {
     }
   });
   return (
-    <div className={puzzle.background}>
+    <div className={puzzle.backgroundWorld}>
       <p>World Record</p>
       <ul>
         {letters.map(line => (
-          <li key={line.key}>
+          <li key={line.key} className={puzzle.worldRecord}>
             {line.letters.map(letter => (
               <p>{letter}</p>
             ))}
