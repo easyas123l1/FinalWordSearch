@@ -31,7 +31,6 @@ const WorldRecord = () => {
                 littleArray = [];
               }
             }
-            console.log(bigArray);
             setLetters(bigArray);
           }
         }
