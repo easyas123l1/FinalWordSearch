@@ -17,9 +17,17 @@ const WorldRecord = () => {
             let bigArray = [];
             let littleArray = [];
             for (let i = 0; i < splitLetters.length; i++) {
+              const newObjOne = {
+                letter: splitLetters[i],
+                key: i
+              };
               littleArray.push(splitLetters[i]);
               if (littleArray.length === 500) {
-                bigArray.push(littleArray);
+                const newObjTwo = {
+                  letters: littleArray,
+                  key: i
+                };
+                bigArray.push(newObjTwo);
                 littleArray = [];
               }
             }
@@ -34,6 +42,15 @@ const WorldRecord = () => {
   return (
     <div className={puzzle.background}>
       <p>World Record</p>
+      <ul>
+        {letters.map(line => (
+          <li key={line.key}>
+            {line.letters.map(letter => (
+              <p>{letter}</p>
+            ))}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
