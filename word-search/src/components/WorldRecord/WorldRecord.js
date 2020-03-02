@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import puzzle from "../../styles/puzzle.module.scss";
+import { Circle } from "react-spinners-css";
 
 const WorldRecord = () => {
   const [letters, setLetters] = useState([]);
@@ -38,20 +39,30 @@ const WorldRecord = () => {
       rawFile.send(null);
     }
   });
-  return (
-    <div className={puzzle.backgroundWorld}>
-      <p>World Record</p>
-      <ul>
-        {letters.map(line => (
-          <li key={line.key} className={puzzle.worldRecord}>
-            {line.letters.map(letter => (
-              <p>{letter}</p>
-            ))}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+
+  if (letters.length === 0) {
+    return (
+      <div className={puzzle.background}>
+        <h1>Loading World Record Puzzle may take a while...</h1>
+        <Circle color="blue" />
+      </div>
+    );
+  } else {
+    return (
+      <div className={puzzle.backgroundWorld}>
+        <p>World Record</p>
+        <ul>
+          {letters.map(line => (
+            <li key={line.key} className={puzzle.worldRecord}>
+              {line.letters.map(letter => (
+                <p>{letter}</p>
+              ))}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 };
 
 export default WorldRecord;
