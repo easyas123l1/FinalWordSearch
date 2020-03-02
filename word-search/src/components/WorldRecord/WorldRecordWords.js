@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import puzzle from "../../styles/puzzle.module.scss";
+import { Circle } from "react-spinners-css";
 
 const WorldRecordWords = () => {
   const [words, setWords] = useState([]);
@@ -52,18 +53,27 @@ const WorldRecordWords = () => {
     }
   });
 
-  return (
-    <div className={puzzle.backgroundWorld}>
-      <p>World Record Words</p>
-      <ul>
-        {words.map(word => (
-          <li key={word} className={puzzle.worldRecord}>
-            <p>{word}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  if (words.length === 0) {
+    return (
+      <div className={puzzle.background}>
+        <h1>Loading World Record Words may take a while...</h1>
+        <Circle color="blue" />
+      </div>
+    );
+  } else {
+    return (
+      <div className={puzzle.backgroundWorld}>
+        <p>World Record Words</p>
+        <ul>
+          {words.map(word => (
+            <li key={word} className={puzzle.worldRecord}>
+              <p>{word}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 };
 
 export default WorldRecordWords;
