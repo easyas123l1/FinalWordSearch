@@ -44,7 +44,7 @@ const WorldRecord = () => {
     return (
       <div className={puzzle.background}>
         <h1>Loading World Record Puzzle may take a while...</h1>
-        <Circle color="blue" />
+        <Circle color="blue" size={200} />
       </div>
     );
   } else {
