@@ -16,7 +16,12 @@ const NavBar = ({ loggedIn, logoutUser }) => {
   return (
     <div className={puzzle.navBar}>
       <div>
-        <Link to="/AllPuzzles" className={puzzle.aTag}>
+        <Link to="/home" className={puzzle.aTag}>
+          Home
+        </Link>
+      </div>
+      <div>
+        <Link to="/allPuzzles" className={puzzle.aTag}>
           All Puzzles
         </Link>
       </div>
