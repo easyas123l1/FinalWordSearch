@@ -66,7 +66,7 @@ const WorldRecordWords = () => {
         <p>World Record Words</p>
         <ul className={puzzle.worldWords}>
           {words.map(word => (
-            <li key={word} className={puzzle.worldRecord}>
+            <li key={word} className={puzzle.worldRecordWords}>
               <p>{word}</p>
             </li>
           ))}
