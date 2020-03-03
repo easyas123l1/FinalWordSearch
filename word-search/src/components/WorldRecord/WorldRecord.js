@@ -18,10 +18,6 @@ const WorldRecord = () => {
             let bigArray = [];
             let littleArray = [];
             for (let i = 0; i < splitLetters.length; i++) {
-              const newObjOne = {
-                letter: splitLetters[i],
-                key: i
-              };
               littleArray.push(splitLetters[i]);
               if (littleArray.length === 500) {
                 const newObjTwo = {
