@@ -258,7 +258,23 @@ a:hover {
   width: max-content;
 }
 
+.backgroundWorldWords {
+  position: absolute;
+  top: 64px;
+  z-index: -1;
+  background-color: #a8d0e6;
+  height: max-content;
+  width: 100%;
+}
+
 .worldRecord {
   display: inline-block;
   min-width: 35px;
+  margin: 0.5%;
+}
+
+.worldWords {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
