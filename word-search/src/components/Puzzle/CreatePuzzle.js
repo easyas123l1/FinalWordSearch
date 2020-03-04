@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import { generatePuzzle } from "../../store/actions/puzzleAction";
 import puzzle from "../../styles/puzzle.module.scss";
 
-const CreatePuzzle = ({ generatePuzzle }) => {
-  const [words, setWords] = useState([]);
+const CreatePuzzle = ({ title, words, size, generatePuzzle }) => {
+  const [newWords, setWords] = useState(words || []);
   const [text, setText] = useState("");
-  const [size, setSize] = useState(10);
+  const [newSize, setSize] = useState(size || 10);
   const [badWords, setBadWords] = useState([]);
-  const [title, setTitle] = useState("");
+  const [newTitle, setTitle] = useState(title || "");
 
   const history = useHistory();
 
@@ -52,8 +52,8 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 
   const handleRemove = e => {
     e.preventDefault();
-    let newWords = words.filter(word => !word.activate);
-    setWords(newWords);
+    let newerWords = newWords.filter(word => !word.activate);
+    setWords(newerWords);
   };
 
   const badWordTest = word => {
@@ -90,7 +90,7 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       return;
     }
 
-    for (let word of words) {
+    for (let word of newWords) {
       if (word.text === text) {
         alert("Please do not use the same word");
         return;
@@ -105,15 +105,15 @@ const CreatePuzzle = ({ generatePuzzle }) => {
       color: ""
     };
 
-    setWords([...words, newItem]);
+    setWords([...newWords, newItem]);
     setText("");
   };
 
   const activateDelete = e => {
     let clickWord = e.target.innerText.split(" ");
     clickWord = clickWord[1];
-    let newWords = JSON.parse(JSON.stringify(words));
-    for (let word of newWords) {
+    let newerWords = JSON.parse(JSON.stringify(newWords));
+    for (let word of newerWords) {
       if (clickWord === word.text) {
         if (word.activate) {
           word.activate = false;
@@ -122,15 +122,15 @@ const CreatePuzzle = ({ generatePuzzle }) => {
         }
       }
     }
-    setWords(newWords);
+    setWords(newerWords);
   };
 
   const generate = e => {
     e.preventDefault();
     const puzzle = {
-      title,
-      words,
-      size
+      newTitle,
+      newWords,
+      newSize
     };
     generatePuzzle(puzzle);
     history.push("/addPuzzle");
@@ -142,35 +142,35 @@ const CreatePuzzle = ({ generatePuzzle }) => {
         <p className={puzzle.space}>1. Name the puzzle:</p>
         <input
           type="text"
-          name="title"
+          name="newTitle"
           onChange={changeTitle}
           placeholder="Title the puzzle!"
-          value={title}
+          value={newTitle}
           className={puzzle.space}
         />
         <p className={puzzle.space}>2. Add some words:</p>
         <form onSubmit={handleSubmit} className={puzzle.addWord}>
           <input
             type="text"
-            name="word"
+            name="newWord"
             onChange={changeHandler}
             placeholder="Words Here!"
             value={text}
             className={puzzle.space}
           />
           <button type="submit" className={puzzle.loginButton}>
-            Add word # {words.length + 1}
+            Add word # {newWords.length + 1}
           </button>
         </form>
         <form className={puzzle.addWord}>
           <p className={puzzle.space}>3. Pick a size (10-50)</p>
           <input
             type="number"
-            name="size"
+            name="newSize"
             onChange={changeSize}
             min="10"
             max="50"
-            value={size}
+            value={newSize}
             className={puzzle.space}
           />
         </form>
@@ -182,8 +182,8 @@ const CreatePuzzle = ({ generatePuzzle }) => {
           </p>
           <div className={puzzle.createFindWords}>
             <ul onClick={activateDelete}>
-              {words &&
-                words.map((word, i) => (
+              {newWords &&
+                newWords.map((word, i) => (
                   <li id={i} key={word.id} className={word.activate.toString()}>
                     #{i + 1}: {word.text}
                   </li>
@@ -205,7 +205,11 @@ const CreatePuzzle = ({ generatePuzzle }) => {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    title: state.puzzleReducer.title,
+    words: state.puzzleReducer.words,
+    size: state.puzzleReducer.size
+  };
 };
 
 export default connect(mapStateToProps, { generatePuzzle })(CreatePuzzle);
