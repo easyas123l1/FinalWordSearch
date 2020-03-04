@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
@@ -10,6 +11,8 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [answers, setAnswers] = useState([]);
   const [impossible, setImpossible] = useState(false);
   const [showWords, setShowWords] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     // my guess on how to do this is have loop thru words to get text of each one count the length and then pull that many out objects out of the array answers.  For puzzles with lots of words this would be painful slow process so maybe we build an array of id's with color and then loop thru lines and update at the end.
@@ -546,6 +549,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   // !!!NOT COMPLETED!!! THIS FUNCTION SEND USER BACK TO PREVIOUS PAGE TO EDIT PUZZLE!  Genius!
   const editPuzzle = e => {
     console.log(e);
+    history.push("/createPuzzle");
   };
 
   return (
