@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import puzzle from "../../styles/puzzle.module.scss";
 
 const Victory = () => {
   return (
@@ -8,4 +10,8 @@ const Victory = () => {
   );
 };
 
-export default Victory;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps, {})(Victory);
