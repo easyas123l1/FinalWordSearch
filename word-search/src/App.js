@@ -12,6 +12,7 @@ import AllPuzzles from "./components/Puzzle/AllPuzzles";
 import PlayPuzzle from "./components/Puzzle/PlayPuzzle";
 import WorldRecord from "./components/WorldRecord/WorldRecord";
 import WorldRecordWords from "./components/WorldRecord/WorldRecordWords";
+import Victory from "./components/Puzzle/Victory";
 import { getUserInfo } from "./store/actions/userAction";
 import LandingPage from "./components/Landing/LandingPage";
 
@@ -35,6 +36,7 @@ function App({ getUserInfo, loggedInStatus }) {
         <Route path="/playPuzzle" component={PlayPuzzle} />
         <Route path="/worldRecord" component={WorldRecord} />
         <Route path="/worldRecordWords" component={WorldRecordWords} />
+        <Route path="/completePuzzle" component={Victory} />
         <PrivateRoute path="/addPuzzle">
           <AddPuzzle />
         </PrivateRoute>
