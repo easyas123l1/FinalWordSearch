@@ -259,6 +259,7 @@ const PlayPuzzle = ({
               }
             }
             if (checkComplete) {
+              // send completePuzzle time to redux and send to completePuzzle page.
               completePuzzle(time);
               history.push("/completePuzzle");
             }
