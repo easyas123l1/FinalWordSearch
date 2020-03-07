@@ -257,6 +257,7 @@ const PlayPuzzle = ({
             }
             if (checkComplete) {
               setPuzzleSolved(true);
+              // send to redux time completed.
             }
           }
         }
@@ -416,7 +417,7 @@ function mapStateToProps(state) {
     code: state.puzzleReducer.playPuzzleCode,
     description: state.puzzleReducer.playPuzzleDescription,
     rating: state.puzzleReducer.playPuzzleRating,
-    creator: state.puzzleReducer.playPUzzleCreator
+    creator: state.puzzleReducer.playPuzzleCreator
   };
 }
 
