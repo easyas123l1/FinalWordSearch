@@ -85,3 +85,9 @@ export const updatePuzzle = words => dispatch => {
   dispatch({ type: UPDATE_PUZZLE, payload: words });
   // will eventually call axios.
 };
+
+export const COMPLETE_PUZZLE = "COMPLETE_PUZZLE";
+
+export const completePuzzle = time => dispatch => {
+  dispatch({ type: COMPLETE_PUZZLE, payload: time });
+};
