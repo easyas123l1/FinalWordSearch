@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import uuid from "uuid";
 import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
@@ -22,6 +23,8 @@ const PlayPuzzle = ({
   const [firstClickLocation, setFirstClickLocation] = useState("");
   const [time, setTime] = useState(0);
   const [active, setActive] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     setSize(Math.sqrt(code.length));
@@ -257,7 +260,7 @@ const PlayPuzzle = ({
             }
             if (checkComplete) {
               completePuzzle(time);
-              // send to redux time completed.
+              history.push("/completePuzzle");
             }
           }
         }
