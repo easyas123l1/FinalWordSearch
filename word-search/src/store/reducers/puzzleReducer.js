@@ -9,7 +9,8 @@ import {
   GET_PUZZLE,
   PUZZLE_SUCCESS,
   PUZZLE_FAILURE,
-  UPDATE_PUZZLE
+  UPDATE_PUZZLE,
+  COMPLETE_PUZZLE
 } from "../actions/puzzleAction";
 
 const initState = {
@@ -23,6 +24,7 @@ const initState = {
   playPuzzleRating: "",
   playPuzzleCreator: "",
   playPuzzleWords: [],
+  playPuzzleTime: 0,
   puzzles: [],
   getPuzzle: false,
   getPuzzles: false,
@@ -124,6 +126,13 @@ export const puzzleReducer = (state = initState, action) => {
         ...state,
         errorMessage: "",
         playPuzzleWords: action.payload
+      };
+
+    case COMPLETE_PUZZLE:
+      return {
+        ...state,
+        errorMessage: "",
+        playPuzzleTime: action.payload
       };
 
     default:
