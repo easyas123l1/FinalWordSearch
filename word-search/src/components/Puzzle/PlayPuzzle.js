@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
 import classnames from "classnames";
 import "./WordSearch.css";
-import { updatePuzzle } from "../../store/actions/puzzleAction";
+import { updatePuzzle, completePuzzle } from "../../store/actions/puzzleAction";
 
 const PlayPuzzle = ({
   words,
@@ -13,13 +13,13 @@ const PlayPuzzle = ({
   description,
   rating,
   creator,
-  updatePuzzle
+  updatePuzzle,
+  completePuzzle
 }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [size, setSize] = useState(0);
   const [firstClickLocation, setFirstClickLocation] = useState("");
-  const [puzzleSolved, setPuzzleSolved] = useState(false);
   const [time, setTime] = useState(0);
   const [active, setActive] = useState(false);
 
@@ -256,7 +256,7 @@ const PlayPuzzle = ({
               }
             }
             if (checkComplete) {
-              setPuzzleSolved(true);
+              completePuzzle(time);
               // send to redux time completed.
             }
           }
@@ -421,4 +421,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { updatePuzzle })(PlayPuzzle);
+export default connect(mapStateToProps, { updatePuzzle, completePuzzle })(
+  PlayPuzzle
+);
