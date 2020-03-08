@@ -7,7 +7,7 @@ const LandingPage = () => {
       <p>
         Hello, my name is Andrew Wilson and this is my word search
         generator/puzzle. I have also generated a static puzzle that currently
-        holds the world record 500x500 with 14,995 words! Currently i'm a full
+        holds the world record 500x500 with 14,994 words! Currently i'm a full
         stack web developer student. I have a huge passion for coding!
       </p>
       <p>
