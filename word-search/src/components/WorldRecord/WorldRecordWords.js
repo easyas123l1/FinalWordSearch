@@ -51,7 +51,7 @@ const WorldRecordWords = () => {
       rawFile3.send(null);
       setWords(newWords);
     }
-  });
+  }, [words.length]);
 
   if (words.length === 0) {
     return (
