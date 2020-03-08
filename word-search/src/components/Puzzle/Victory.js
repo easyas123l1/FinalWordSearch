@@ -4,10 +4,12 @@ import puzzle from "../../styles/puzzle.module.scss";
 
 const Victory = ({ name, time }) => {
   return (
-    <div>
-      <p>
-        Completed puzzle {name} in {time}
-      </p>
+    <div className={puzzle.background}>
+      <div>
+        <p>
+          Completed puzzle {name} in {time}
+        </p>
+      </div>
     </div>
   );
 };
