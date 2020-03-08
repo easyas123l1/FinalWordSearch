@@ -4,11 +4,9 @@ import { Circle } from "react-spinners-css";
 
 const WorldRecordWords = () => {
   const [words, setWords] = useState([]);
-  console.log(words);
 
   useEffect(() => {
     let newWords = [];
-    console.log("useEffect");
     if (words.length === 0) {
       const file1 = require("./words1.txt");
       const file2 = require("./words2.txt");
