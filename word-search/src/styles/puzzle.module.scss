@@ -46,9 +46,9 @@
 }
 
 .navBar {
-  background-color: #374785;
+  background-color: #041e42;
   height: 64px;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -75,7 +75,7 @@
   flex-direction: column;
   align-items: center;
   background-color: white;
-  border: darkblue solid 3px;
+  border: #041e42 solid 3px;
   border-radius: 10px;
   height: 85vh;
   width: 80vw;
@@ -137,14 +137,18 @@ a:hover {
 }
 
 .logout {
-  background-color: #374785;
+  background-color: #041e42;
   border: none;
   color: white;
 }
 
 .logout:hover {
-  color: orange;
+  color: #ffb81c;
   cursor: pointer;
+}
+
+.image {
+  width: 100%;
 }
 
 .login {
@@ -167,7 +171,7 @@ a:hover {
   width: 80%;
   margin: 3% auto;
   height: 60px;
-  background-color: #374785;
+  background-color: #041e42;
   color: white;
   border-radius: 25px;
 }
@@ -190,7 +194,7 @@ a:hover {
   width: 80%;
   margin: 1%;
   height: 60px;
-  background-color: #374785;
+  background-color: #041e42;
   color: white;
   border-radius: 25px;
 }
@@ -229,7 +233,7 @@ a:hover {
   width: 80%;
   margin: 3% auto;
   height: 60px;
-  background-color: #374785;
+  background-color: #041e42;
   color: white;
   border-radius: 25px;
 }
@@ -238,7 +242,7 @@ a:hover {
   width: 80%;
   margin: 3% auto;
   height: 60px;
-  background-color: #374785;
+  background-color: #041e42;
   color: white;
   border-radius: 25px;
 }
