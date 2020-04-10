@@ -15,7 +15,7 @@ const PlayPuzzle = ({
   rating,
   creator,
   updatePuzzle,
-  completePuzzle
+  completePuzzle,
 }) => {
   const [lines, setLines] = useState([]);
   const [answers, setAnswers] = useState([]);
@@ -31,10 +31,10 @@ const PlayPuzzle = ({
     buildLines();
     buildAnswers();
     setActive(true);
-  }, [code]);
+  }, [code]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    let interval = null;
+    let interval = null; // eslint-disable-line no-unused-vars
     if (active) {
       interval = setTimeout(() => {
         setTime(time + 1);
@@ -58,13 +58,13 @@ const PlayPuzzle = ({
           circle: "",
           first: "",
           color: "",
-          hover: ""
+          hover: "",
         };
         line.push(newLetter);
         if (j + 1 === size) {
           const newLine = {
             text: line,
-            id: uuid.v4()
+            id: uuid.v4(),
           };
           newLines.push(newLine);
         }
@@ -73,49 +73,49 @@ const PlayPuzzle = ({
     setLines(newLines);
   };
 
-  const goUp = position => {
+  const goUp = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${seperate[0]}, ${--seperate[1]}`;
     return newPosition;
   };
 
-  const goDown = position => {
+  const goDown = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${seperate[0]}, ${++seperate[1]}`;
     return newPosition;
   };
 
-  const goUpLeft = position => {
+  const goUpLeft = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${--seperate[0]}, ${--seperate[1]}`;
     return newPosition;
   };
 
-  const goLeft = position => {
+  const goLeft = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${--seperate[0]}, ${seperate[1]}`;
     return newPosition;
   };
 
-  const goDownLeft = position => {
+  const goDownLeft = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${--seperate[0]}, ${++seperate[1]}`;
     return newPosition;
   };
 
-  const goUpRight = position => {
+  const goUpRight = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${++seperate[0]}, ${--seperate[1]}`;
     return newPosition;
   };
 
-  const goRight = position => {
+  const goRight = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${++seperate[0]}, ${seperate[1]}`;
     return newPosition;
   };
 
-  const goDownRight = position => {
+  const goDownRight = (position) => {
     let seperate = position.replace(",", "").split(" ");
     let newPosition = `${++seperate[0]}, ${++seperate[1]}`;
     return newPosition;
@@ -129,7 +129,7 @@ const PlayPuzzle = ({
       for (let letter of letters) {
         const newItem = {
           position: position,
-          character: letter
+          character: letter,
         };
         newAnswers.push(newItem);
         if (direction === "Up") {
@@ -176,7 +176,7 @@ const PlayPuzzle = ({
     // we will add a couple more properties on the back end called solved
   };
 
-  const wordFind = e => {
+  const wordFind = (e) => {
     //set variables needed
     let selected = e.target.id;
     let objWords = [];
@@ -195,7 +195,7 @@ const PlayPuzzle = ({
         end: answers[endIndex].position,
         length: length,
         word: arrayWord,
-        wordIndex: word
+        wordIndex: word,
       };
       //place the object inside an array.
       objWords.push(newWord);
@@ -236,7 +236,7 @@ const PlayPuzzle = ({
               "yellow",
               "purple",
               "brown",
-              "silver"
+              "silver",
             ];
             for (let wordLength = 0; wordLength < word.length; wordLength++) {
               for (let line of lines) {
@@ -307,7 +307,7 @@ const PlayPuzzle = ({
     }
   };
 
-  const mouseHover = e => {
+  const mouseHover = (e) => {
     //if position hovered is the same as start or no click then nothing happens.
     if (firstClickLocation === "" || firstClickLocation === e.target.id) {
       return;
@@ -377,9 +377,9 @@ const PlayPuzzle = ({
       <div className={puzzle.puzzle}>
         <h1>{name}</h1>
         <ul onClick={wordFind}>
-          {lines.map(line => (
+          {lines.map((line) => (
             <li id={line.id} key={line.id} className={puzzle.findWordRow}>
-              {line.text.map(letter => (
+              {line.text.map((letter) => (
                 <p
                   onMouseEnter={mouseHover}
                   onMouseLeave={mouseLeave}
@@ -403,7 +403,7 @@ const PlayPuzzle = ({
         <p>{time} seconds </p>
         <h1>WORDS TO FIND:</h1>
         <ul>
-          {words.map(word => (
+          {words.map((word) => (
             <li id={word.id} key={word.id} className={word.color}>
               {word.word}
             </li>
@@ -421,7 +421,7 @@ function mapStateToProps(state) {
     code: state.puzzleReducer.playPuzzleCode,
     description: state.puzzleReducer.playPuzzleDescription,
     rating: state.puzzleReducer.playPuzzleRating,
-    creator: state.puzzleReducer.playPuzzleCreator
+    creator: state.puzzleReducer.playPuzzleCreator,
   };
 }
 
