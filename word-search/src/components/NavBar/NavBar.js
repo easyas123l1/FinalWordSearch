@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink as Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../store/actions/userAction";
 import puzzle from "../../styles/puzzle.module.scss";
@@ -7,7 +7,7 @@ import puzzle from "../../styles/puzzle.module.scss";
 const NavBar = ({ loggedIn, logoutUser }) => {
   const history = useHistory();
 
-  const logout = e => {
+  const logout = (e) => {
     e.preventDefault();
     logoutUser();
     history.push("/login");
@@ -16,34 +16,58 @@ const NavBar = ({ loggedIn, logoutUser }) => {
   return (
     <div className={puzzle.navBar}>
       <div>
-        <Link to="/home" className={puzzle.aTag}>
+        <Link
+          to="/home"
+          className={puzzle.aTag}
+          activeStyle={{ color: "#ffb81c" }}
+        >
           Home
         </Link>
       </div>
       <div>
-        <Link to="/allPuzzles" className={puzzle.aTag}>
+        <Link
+          to="/allPuzzles"
+          className={puzzle.aTag}
+          activeStyle={{ color: "#ffb81c" }}
+        >
           All Puzzles
         </Link>
       </div>
       <div>
-        <Link to="/worldRecord" className={puzzle.aTag}>
+        <Link
+          to="/worldRecord"
+          className={puzzle.aTag}
+          activeStyle={{ color: "#ffb81c" }}
+        >
           World Record Puzzle
         </Link>
       </div>
       <div>
-        <Link to="/worldRecordWords" className={puzzle.aTag}>
+        <Link
+          to="/worldRecordWords"
+          className={puzzle.aTag}
+          activeStyle={{ color: "#ffb81c" }}
+        >
           World Record Words
         </Link>
       </div>
       {!loggedIn && (
         <>
           <div>
-            <Link to="/register" className={puzzle.aTag}>
+            <Link
+              to="/register"
+              className={puzzle.aTag}
+              activeStyle={{ color: "#ffb81c" }}
+            >
               Register
             </Link>
           </div>
           <div>
-            <Link to="/login" className={puzzle.aTag}>
+            <Link
+              to="/login"
+              className={puzzle.aTag}
+              activeStyle={{ color: "#ffb81c" }}
+            >
               Login
             </Link>
           </div>
@@ -52,11 +76,19 @@ const NavBar = ({ loggedIn, logoutUser }) => {
       {loggedIn && (
         <>
           <div>
-            <Link to="/createPuzzle" className={puzzle.aTag}>
+            <Link
+              to="/createPuzzle"
+              className={puzzle.aTag}
+              activeStyle={{ color: "#ffb81c" }}
+            >
               Create Puzzle
             </Link>
           </div>
-          <button onClick={logout} className={puzzle.logout}>
+          <button
+            onClick={logout}
+            className={puzzle.logout}
+            activeStyle={{ color: "#ffb81c" }}
+          >
             Logout
           </button>
         </>
@@ -67,7 +99,7 @@ const NavBar = ({ loggedIn, logoutUser }) => {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.userReducer.loggedIn
+    loggedIn: state.userReducer.loggedIn,
   };
 }
 
