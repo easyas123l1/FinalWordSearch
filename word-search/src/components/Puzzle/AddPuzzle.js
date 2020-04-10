@@ -28,7 +28,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
         "yellow",
         "purple",
         "brown",
-        "silver"
+        "silver",
       ];
       let colorNumber = 0;
       let position = 0;
@@ -39,7 +39,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
           let color = colors[colorNumber];
           const newObj = {
             position: answers[i].position,
-            color: color
+            color: color,
           };
           colorArray.push(newObj);
         }
@@ -67,7 +67,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
       // if false we make sure words are not shown/solved.
       setLines(newLines);
     }
-  }, [showWords, answers, words]);
+  }, [showWords, answers, words]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // the *root* function that calls the rest to build our puzzle
   const generatePuzzle = () => {
@@ -94,13 +94,13 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
           circle: "",
           first: "",
           color: "",
-          hover: ""
+          hover: "",
         };
         line.push(newLetter);
         if (i2 + 1 === size) {
           const newLine = {
             text: line,
-            id: uuid.v4()
+            id: uuid.v4(),
           };
           newLines.push(newLine);
         }
@@ -108,13 +108,12 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     }
     setLines(newLines);
   };
-
   // useEffect that generates a puzzle on load and every time words or size change.
   useEffect(() => {
     setLines([]);
     setAnswers([]);
     generatePuzzle();
-  }, [words, size]);
+  }, [words, size]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // selects a random position on the board
   const randomPosition = () => {
@@ -174,7 +173,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
     let position = `${row}, ${column}`;
     const newCharacter = {
       position: position,
-      character: character
+      character: character,
     };
     return newCharacter;
   };
@@ -272,7 +271,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   };
 
   // this checks to see if the random position has been tried
-  const randomChecker = tried => {
+  const randomChecker = (tried) => {
     let newPosition = false;
     while (!newPosition) {
       const newRandomPosition = randomPosition();
@@ -320,7 +319,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
           directDown,
           directRight,
           row,
-          column
+          column,
         ] = directions;
         if (!directUp && !directLeft && !directDown && !directRight) {
           possiblePlacement = false;
@@ -332,35 +331,35 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
 
           const objUp = {
             direction: "Up",
-            possible: directUp
+            possible: directUp,
           };
           const objUpRight = {
             direction: "UpRight",
-            possible: directUpRight
+            possible: directUpRight,
           };
           const objRight = {
             direction: "Right",
-            possible: directRight
+            possible: directRight,
           };
           const objDownRight = {
             direction: "DownRight",
-            possible: directDownRight
+            possible: directDownRight,
           };
           const objDown = {
             direction: "Down",
-            possible: directDown
+            possible: directDown,
           };
           const objDownLeft = {
             direction: "DownLeft",
-            possible: directDownLeft
+            possible: directDownLeft,
           };
           const objLeft = {
             direction: "Left",
-            possible: directLeft
+            possible: directLeft,
           };
           const objUpLeft = {
             direction: "UpLeft",
-            possible: directUpLeft
+            possible: directUpLeft,
           };
 
           const possibleDirections = [
@@ -371,7 +370,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
             objDown,
             objDownLeft,
             objLeft,
-            objUpLeft
+            objUpLeft,
           ];
           let newPossibleDirections = [];
 
@@ -471,11 +470,11 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   };
 
   // turn the data into variables for the database/call to database to save puzzle/words
-  const savePuzzle = e => {
+  const savePuzzle = (e) => {
     const wordPosDir = wordPositionDirection();
     let letters = [];
-    lines.forEach(line => {
-      line.text.map(letter => letters.push(letter.text));
+    lines.forEach((line) => {
+      line.text.map((letter) => letters.push(letter.text));
     });
     letters = letters.join("");
     // word position direction
@@ -487,7 +486,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
       name: title,
       code: letters,
       description: "",
-      words: wordPosDir
+      words: wordPosDir,
     };
     reduxSavePuzzle(savePuz);
   };
@@ -530,7 +529,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
       const newObj = {
         word: word.text,
         position: answers[index].position,
-        direction: dir
+        direction: dir,
       };
       final.push(newObj);
       index += word.text.length;
@@ -547,7 +546,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   };
 
   // !!!NOT COMPLETED!!! THIS FUNCTION SEND USER BACK TO PREVIOUS PAGE TO EDIT PUZZLE!  Genius!
-  const editPuzzle = e => {
+  const editPuzzle = (e) => {
     console.log(e);
     history.push("/createPuzzle");
   };
@@ -557,9 +556,9 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
       <div className={puzzle.puzzle}>
         <h1>{title}</h1>
         <ul>
-          {lines.map(line => (
+          {lines.map((line) => (
             <li id={line.id} key={line.id} className={puzzle.findWordRow}>
-              {line.text.map(letter => (
+              {line.text.map((letter) => (
                 <p id={letter.id} key={letter.id} className={letter.color}>
                   {letter.text}
                 </p>
@@ -572,7 +571,7 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
         <ul>
           <h1>WORDS TO FIND:</h1>
           {words &&
-            words.map(word => (
+            words.map((word) => (
               <li id={word.id} key={word.id}>
                 {word.text}
               </li>
@@ -597,11 +596,11 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     title: state.puzzleReducer.title,
     words: state.puzzleReducer.words,
-    size: state.puzzleReducer.size
+    size: state.puzzleReducer.size,
   };
 };
 
