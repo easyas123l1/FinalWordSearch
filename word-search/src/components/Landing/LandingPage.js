@@ -16,6 +16,7 @@ const LandingPage = () => {
         world record puzzle! Thank you for viewing my website!
       </p>
       <img
+        className={puzzle.image}
         src="https://www.nicepng.com/png/detail/66-667631_website-under-construction-website-still-under-construction.png"
         alt="Website Under Construction - Website Still Under Construction@nicepng.com"
       ></img>
