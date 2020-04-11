@@ -20,6 +20,13 @@
   list-style: none;
 }
 
+.findWordButton {
+  position: fixed;
+  top: 100%;
+  right: 0;
+  top: 64px;
+}
+
 .puzzle {
   position: absolute;
   top: 64px;
