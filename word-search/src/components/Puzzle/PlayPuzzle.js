@@ -382,7 +382,9 @@ const PlayPuzzle = ({
     <>
       <div className={puzzle.puzzle}>
         <h1>{name}</h1>
-        <button onClick={toggleWords}>toggle words</button>
+        <button onClick={toggleWords} className={puzzle.findWordButton}>
+          toggle words
+        </button>
         <ul onClick={wordFind}>
           {lines.map((line) => (
             <li id={line.id} key={line.id} className={puzzle.findWordRow}>
