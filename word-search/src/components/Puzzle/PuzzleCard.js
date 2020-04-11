@@ -7,10 +7,10 @@ import puzzle from "../../styles/puzzle.module.scss";
 const PuzzleCard = ({
   puzzle: { id, name, code, description },
   getPuzzle,
-  words
+  words,
 }) => {
   const history = useHistory();
-  const playPuzzle = e => {
+  const playPuzzle = (e) => {
     e.preventDefault();
     getPuzzle(id);
     history.push("/playPuzzle");
@@ -34,7 +34,7 @@ const PuzzleCard = ({
 
 function mapStateToProps(state) {
   return {
-    words: state.puzzleReducer.playPuzzleWords
+    words: state.puzzleReducer.playPuzzleWords,
   };
 }
 
