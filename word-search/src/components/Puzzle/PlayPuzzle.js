@@ -23,6 +23,7 @@ const PlayPuzzle = ({
   const [firstClickLocation, setFirstClickLocation] = useState("");
   const [time, setTime] = useState(0);
   const [active, setActive] = useState(false);
+  const [showWords, setShowWords] = useState(true);
 
   const history = useHistory();
 
@@ -372,10 +373,16 @@ const PlayPuzzle = ({
     setLines(newLines);
   };
 
+  const toggleWords = (e) => {
+    e.preventDefault();
+    setShowWords(!showWords);
+  };
+
   return (
     <>
       <div className={puzzle.puzzle}>
         <h1>{name}</h1>
+        <button onClick={toggleWords}>toggle words</button>
         <ul onClick={wordFind}>
           {lines.map((line) => (
             <li id={line.id} key={line.id} className={puzzle.findWordRow}>
@@ -399,17 +406,20 @@ const PlayPuzzle = ({
           ))}
         </ul>
       </div>
-      <div className={puzzle.wordsToFind}>
-        <p>{time} seconds </p>
-        <h1>WORDS TO FIND:</h1>
-        <ul>
-          {words.map((word) => (
-            <li id={word.id} key={word.id} className={word.color}>
-              {word.word}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {showWords && (
+        <div className={puzzle.wordsToFind}>
+          <p>{time} seconds </p>
+          <h1>WORDS TO FIND:</h1>
+          <ul>
+            {words.map((word) => (
+              <li id={word.id} key={word.id} className={word.color}>
+                {word.word}
+              </li>
+            ))}
+          </ul>
+          <button onClick={toggleWords}>hide words</button>
+        </div>
+      )}
     </>
   );
 };
