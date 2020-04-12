@@ -255,7 +255,7 @@ const PlayPuzzle = ({
             //test if all words are solved then puzzle is solved.  VICTORY!!!
             let checkComplete = true;
             for (let index of words) {
-              if (index.solved === "") {
+              if (index.solved !== "solved") {
                 checkComplete = false;
               }
             }
