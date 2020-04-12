@@ -383,7 +383,7 @@ const PlayPuzzle = ({
       <div className={puzzle.puzzle}>
         <h1>{name}</h1>
         <button onClick={toggleWords} className={puzzle.findWordButton}>
-          {showWords ? "hide" : "show"} words
+          {showWords ? "Hide" : "Show"} words to find
         </button>
         <ul onClick={wordFind}>
           {lines.map((line) => (
@@ -419,7 +419,7 @@ const PlayPuzzle = ({
               </li>
             ))}
           </ul>
-          <button onClick={toggleWords}>hide words</button>
+          <button onClick={toggleWords}>Hide words</button>
         </div>
       )}
     </>
