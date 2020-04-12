@@ -419,7 +419,9 @@ const PlayPuzzle = ({
               </li>
             ))}
           </ul>
-          <button onClick={toggleWords}>Hide words</button>
+          <button onClick={toggleWords} className={puzzle.hideWordButton}>
+            Hide words
+          </button>
         </div>
       )}
     </>
