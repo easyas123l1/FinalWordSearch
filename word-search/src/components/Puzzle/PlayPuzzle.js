@@ -165,16 +165,19 @@ const PlayPuzzle = ({
   const handleColorChange = (color, solveWord) => {
     let newWords = JSON.parse(JSON.stringify(words));
     color = color + "word";
+    let solvedWord = "";
     for (let word of newWords) {
       if (solveWord.wordIndex.word === word.word) {
         word.color = color;
         word.solved = "solved";
+        solvedWord = word;
       }
     }
     // call redux update words
     updatePuzzle(newWords);
     // in order to get both these function to work we will need to edit the original words object.
     // we will add a couple more properties on the back end called solved
+    return solvedWord;
   };
 
   const wordFind = (e) => {
@@ -239,6 +242,7 @@ const PlayPuzzle = ({
               "brown",
               "silver",
             ];
+            let solvedWord = "";
             for (let wordLength = 0; wordLength < word.length; wordLength++) {
               for (let line of lines) {
                 for (let i = 0; i <= size - 1; i++) {
@@ -247,7 +251,7 @@ const PlayPuzzle = ({
                     line.text[i].circle = "circle";
                     //set random color for circle and word found
                     line.text[i].color = colors[randomColor];
-                    handleColorChange(colors[randomColor], word);
+                    solvedWord = handleColorChange(colors[randomColor], word);
                   }
                 }
               }
@@ -255,7 +259,7 @@ const PlayPuzzle = ({
             //test if all words are solved then puzzle is solved.  VICTORY!!!
             let checkComplete = true;
             for (let index of words) {
-              if (index.solved === "") {
+              if (index.solved !== "solved" && solvedWord.word !== index.word) {
                 checkComplete = false;
               }
             }
