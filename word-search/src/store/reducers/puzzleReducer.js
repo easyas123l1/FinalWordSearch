@@ -10,7 +10,7 @@ import {
   PUZZLE_SUCCESS,
   PUZZLE_FAILURE,
   UPDATE_PUZZLE,
-  COMPLETE_PUZZLE
+  COMPLETE_PUZZLE,
 } from "../actions/puzzleAction";
 
 const initState = {
@@ -33,7 +33,7 @@ const initState = {
   savePuzzleDescription: "",
   savePuzzleWords: [],
   isSaving: false,
-  errorMessage: ""
+  errorMessage: "",
 };
 
 export const puzzleReducer = (state = initState, action) => {
@@ -41,17 +41,17 @@ export const puzzleReducer = (state = initState, action) => {
     case START_PUZZLE:
       return {
         ...state,
-        title: action.payload.title,
-        words: action.payload.words,
-        size: action.payload.size,
-        errorMessage: ""
+        title: action.payload.newTitle,
+        words: action.payload.newWords,
+        size: action.payload.newSize,
+        errorMessage: "",
       };
 
     case START_SAVE:
       return {
         ...state,
         isSaving: true,
-        errorMessage: ""
+        errorMessage: "",
       };
 
     case SAVE_SUCCESS:
@@ -62,21 +62,21 @@ export const puzzleReducer = (state = initState, action) => {
         savePuzzleCode: action.payload.puzzle.name,
         savePuzzleDescription: action.payload.puzzle.name,
         savePuzzleWords: action.payload.words,
-        errorMessage: ""
+        errorMessage: "",
       };
 
     case SAVE_FAILURE:
       return {
         ...state,
         isSaving: false,
-        errorMessage: action.payload
+        errorMessage: action.payload,
       };
 
     case GET_PUZZLES:
       return {
         ...state,
         getPuzzles: true,
-        errorMessage: ""
+        errorMessage: "",
       };
 
     case PUZZLES_SUCCESS:
@@ -84,21 +84,21 @@ export const puzzleReducer = (state = initState, action) => {
         ...state,
         getPuzzles: false,
         puzzles: action.payload,
-        errorMessage: ""
+        errorMessage: "",
       };
 
     case PUZZLES_FAILURE:
       return {
         ...state,
         getPuzzles: false,
-        errorMessage: action.payload
+        errorMessage: action.payload,
       };
 
     case GET_PUZZLE:
       return {
         ...state,
         getPuzzle: true,
-        errorMessage: ""
+        errorMessage: "",
       };
 
     case PUZZLE_SUCCESS:
@@ -111,34 +111,34 @@ export const puzzleReducer = (state = initState, action) => {
         playPuzzleRating: action.payload.puzzle.rating,
         playPuzzleCreator: action.payload.puzzle.user_id,
         playPuzzleWords: action.payload.words,
-        errorMessage: ""
+        errorMessage: "",
       };
 
     case PUZZLE_FAILURE:
       return {
         ...state,
         getPuzzle: false,
-        errorMessage: action.payload
+        errorMessage: action.payload,
       };
 
     case UPDATE_PUZZLE:
       return {
         ...state,
         errorMessage: "",
-        playPuzzleWords: action.payload
+        playPuzzleWords: action.payload,
       };
 
     case COMPLETE_PUZZLE:
       return {
         ...state,
         errorMessage: "",
-        playPuzzleTime: action.payload
+        playPuzzleTime: action.payload,
       };
 
     default:
       return {
         ...state,
-        errorMessage: ""
+        errorMessage: "",
       };
   }
 };
