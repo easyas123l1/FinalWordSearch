@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { generatePuzzle } from "../../store/actions/puzzleAction";
 import puzzle from "../../styles/puzzle.module.scss";
+import Footer from "../Footer/Footer";
 
 const CreatePuzzle = ({ title, words, size, generatePuzzle }) => {
   const [newWords, setWords] = useState(words || []);
@@ -20,7 +21,7 @@ const CreatePuzzle = ({ title, words, size, generatePuzzle }) => {
     }
   }, [badWords.length]);
 
-  const readTextFile = file => {
+  const readTextFile = (file) => {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = () => {
@@ -35,37 +36,37 @@ const CreatePuzzle = ({ title, words, size, generatePuzzle }) => {
     rawFile.send(null);
   };
 
-  const changeHandler = e => {
+  const changeHandler = (e) => {
     e.persist();
     setText(e.target.value.toUpperCase());
   };
 
-  const changeTitle = e => {
+  const changeTitle = (e) => {
     e.persist();
     setTitle(e.target.value);
   };
 
-  const changeSize = e => {
+  const changeSize = (e) => {
     e.persist();
     setSize(+e.target.value);
   };
 
-  const handleRemove = e => {
+  const handleRemove = (e) => {
     e.preventDefault();
-    let newerWords = newWords.filter(word => !word.activate);
+    let newerWords = newWords.filter((word) => !word.activate);
     setWords(newerWords);
   };
 
-  const badWordTest = word => {
+  const badWordTest = (word) => {
     // check if word is a bad word. naughty naughty!
-    const foundWord = badWords.find(bw => bw.toUpperCase().trim() === word);
+    const foundWord = badWords.find((bw) => bw.toUpperCase().trim() === word);
     if (foundWord) {
       return false;
     }
     return true;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!text) {
       alert("Input field can not be empty");
@@ -102,14 +103,14 @@ const CreatePuzzle = ({ title, words, size, generatePuzzle }) => {
       id: Date.now(),
       activate: false,
       solved: false,
-      color: ""
+      color: "",
     };
 
     setWords([...newWords, newItem]);
     setText("");
   };
 
-  const activateDelete = e => {
+  const activateDelete = (e) => {
     let clickWord = e.target.innerText.split(" ");
     clickWord = clickWord[1];
     let newerWords = JSON.parse(JSON.stringify(newWords));
@@ -125,90 +126,97 @@ const CreatePuzzle = ({ title, words, size, generatePuzzle }) => {
     setWords(newerWords);
   };
 
-  const generate = e => {
+  const generate = (e) => {
     e.preventDefault();
     const puzzle = {
       newTitle,
       newWords,
-      newSize
+      newSize,
     };
     generatePuzzle(puzzle);
     history.push("/addPuzzle");
   };
 
   return (
-    <div className={puzzle.background}>
-      <div className={puzzle.createPuzzle}>
-        <p className={puzzle.space}>1. Name the puzzle:</p>
-        <input
-          type="text"
-          name="newTitle"
-          onChange={changeTitle}
-          placeholder="Title the puzzle!"
-          value={newTitle}
-          className={puzzle.space}
-        />
-        <p className={puzzle.space}>2. Add some words:</p>
-        <form onSubmit={handleSubmit} className={puzzle.addWord}>
+    <div className={puzzle.spacer}>
+      <div className={puzzle.background}>
+        <div className={puzzle.createPuzzle}>
+          <p className={puzzle.space}>1. Name the puzzle:</p>
           <input
             type="text"
-            name="newWord"
-            onChange={changeHandler}
-            placeholder="Words Here!"
-            value={text}
+            name="newTitle"
+            onChange={changeTitle}
+            placeholder="Title the puzzle!"
+            value={newTitle}
             className={puzzle.space}
           />
-          <button type="submit" className={puzzle.loginButton}>
-            Add word # {newWords.length + 1}
-          </button>
-        </form>
-        <form className={puzzle.addWord}>
-          <p className={puzzle.space}>3. Pick a size (10-50)</p>
-          <input
-            type="number"
-            name="newSize"
-            onChange={changeSize}
-            min="10"
-            max="50"
-            value={newSize}
-            className={puzzle.space}
-          />
-        </form>
-        <div className={puzzle.addWord}>
-          <h1>Words to find!</h1>
-          <p>
-            to remove words click on the word, and click on the remove word
-            button
-          </p>
-          <div className={puzzle.createFindWords}>
-            <ul onClick={activateDelete}>
-              {newWords &&
-                newWords.map((word, i) => (
-                  <li id={i} key={word.id} className={word.activate.toString()}>
-                    #{i + 1}: {word.text}
-                  </li>
-                ))}
-            </ul>
+          <p className={puzzle.space}>2. Add some words:</p>
+          <form onSubmit={handleSubmit} className={puzzle.addWord}>
+            <input
+              type="text"
+              name="newWord"
+              onChange={changeHandler}
+              placeholder="Words Here!"
+              value={text}
+              className={puzzle.space}
+            />
+            <button type="submit" className={puzzle.loginButton}>
+              Add word # {newWords.length + 1}
+            </button>
+          </form>
+          <form className={puzzle.addWord}>
+            <p className={puzzle.space}>3. Pick a size (10-50)</p>
+            <input
+              type="number"
+              name="newSize"
+              onChange={changeSize}
+              min="10"
+              max="50"
+              value={newSize}
+              className={puzzle.space}
+            />
+          </form>
+          <div className={puzzle.addWord}>
+            <h1>Words to find!</h1>
+            <p>
+              to remove words click on the word, and click on the remove word
+              button
+            </p>
+            <div className={puzzle.createFindWords}>
+              <ul onClick={activateDelete}>
+                {newWords &&
+                  newWords.map((word, i) => (
+                    <li
+                      id={i}
+                      key={word.id}
+                      className={word.activate.toString()}
+                    >
+                      #{i + 1}: {word.text}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+          <div className={puzzle.buttonsDiv}>
+            <button onClick={handleRemove} className={puzzle.removeButton}>
+              Remove word(s)
+            </button>
+            <button onClick={generate} className={puzzle.generateButton}>
+              4. Generate Puzzle
+            </button>
           </div>
         </div>
-        <div className={puzzle.buttonsDiv}>
-          <button onClick={handleRemove} className={puzzle.removeButton}>
-            Remove word(s)
-          </button>
-          <button onClick={generate} className={puzzle.generateButton}>
-            4. Generate Puzzle
-          </button>
-        </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     title: state.puzzleReducer.title,
     words: state.puzzleReducer.words,
-    size: state.puzzleReducer.size
+    size: state.puzzleReducer.size,
   };
 };
 
