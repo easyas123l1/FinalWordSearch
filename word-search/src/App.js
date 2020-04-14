@@ -15,6 +15,7 @@ import WorldRecordWords from "./components/WorldRecord/WorldRecordWords";
 import Victory from "./components/Puzzle/Victory";
 import { getUserInfo } from "./store/actions/userAction";
 import LandingPage from "./components/Landing/LandingPage";
+import Footer from "./components/Footer/Footer";
 
 function App({ getUserInfo, loggedInStatus }) {
   const loggedIn = localStorage.getItem("token");
@@ -46,13 +47,14 @@ function App({ getUserInfo, loggedInStatus }) {
         <Route component={LandingPage} />
         {/* default route incase route doesn't exist */}
       </Switch>
+      <Footer />
     </>
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    loggedInStatus: state.puzzleReducer.loggedIn
+    loggedInStatus: state.puzzleReducer.loggedIn,
   };
 };
 
