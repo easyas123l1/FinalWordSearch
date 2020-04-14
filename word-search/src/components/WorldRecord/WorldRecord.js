@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import puzzle from "../../styles/puzzle.module.scss";
 import { Circle } from "react-spinners-css";
+import Footer from "../Footer/Footer";
 
 const WorldRecord = () => {
   const [letters, setLetters] = useState([]);
@@ -22,7 +23,7 @@ const WorldRecord = () => {
               if (littleArray.length === 500) {
                 const newObjTwo = {
                   letters: littleArray,
-                  key: i
+                  key: i,
                 };
                 bigArray.push(newObjTwo);
                 littleArray = [];
@@ -38,24 +39,30 @@ const WorldRecord = () => {
 
   if (letters.length === 0) {
     return (
-      <div className={puzzle.background}>
-        <h1>Loading World Record Puzzle may take a while...</h1>
-        <Circle color="blue" size={200} />
+      <div className={puzzle.spacer}>
+        <div className={puzzle.background}>
+          <h1>Loading World Record Puzzle may take a while...</h1>
+          <Circle color="blue" size={200} />
+        </div>
+        <Footer />
       </div>
     );
   } else {
     return (
-      <div className={puzzle.backgroundWorld}>
-        <p>World Record</p>
-        <ul>
-          {letters.map(line => (
-            <li key={line.key} className={puzzle.worldRecord}>
-              {line.letters.map(letter => (
-                <p>{letter}</p>
-              ))}
-            </li>
-          ))}
-        </ul>
+      <div className={puzzle.spacer}>
+        <div className={puzzle.backgroundWorld}>
+          <p>World Record</p>
+          <ul>
+            {letters.map((line) => (
+              <li key={line.key} className={puzzle.worldRecord}>
+                {line.letters.map((letter) => (
+                  <p>{letter}</p>
+                ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Footer />
       </div>
     );
   }
