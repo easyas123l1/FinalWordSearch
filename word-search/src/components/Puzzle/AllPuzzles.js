@@ -22,9 +22,8 @@ const AllPuzzles = ({ getPuzzles, puzzles }) => {
   } else {
     return (
       <div className={puzzle.background}>
-        <h1 className={puzzle.puzzleHeader}>ALL PUZZLES!</h1>
         <div className={puzzle.allPuzzle}>
-          {puzzles.map(puzzle => {
+          {puzzles.map((puzzle) => {
             return <PuzzleCard key={puzzle.id} puzzle={puzzle} />;
           })}
         </div>
@@ -33,9 +32,9 @@ const AllPuzzles = ({ getPuzzles, puzzles }) => {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    puzzles: state.puzzleReducer.puzzles
+    puzzles: state.puzzleReducer.puzzles,
   };
 };
 
