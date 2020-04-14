@@ -6,6 +6,7 @@ import puzzle from "../../styles/puzzle.module.scss";
 import classnames from "classnames";
 import "./WordSearch.css";
 import { updatePuzzle, completePuzzle } from "../../store/actions/puzzleAction";
+import Footer from "../Footer/Footer";
 
 const PlayPuzzle = ({
   words,
@@ -383,52 +384,55 @@ const PlayPuzzle = ({
   };
 
   return (
-    <>
-      <div className={puzzle.puzzle}>
-        <h1>{name}</h1>
-        <button onClick={toggleWords} className={puzzle.findWordButton}>
-          {showWords ? "Hide" : "Show"} words to find
-        </button>
-        <ul onClick={wordFind}>
-          {lines.map((line) => (
-            <li id={line.id} key={line.id} className={puzzle.findWordRow}>
-              {line.text.map((letter) => (
-                <p
-                  onMouseEnter={mouseHover}
-                  onMouseLeave={mouseLeave}
-                  id={letter.id}
-                  key={letter.id}
-                  className={classnames(
-                    letter.hover,
-                    letter.first,
-                    letter.circle,
-                    letter.color
-                  )}
-                >
-                  {letter.text}
-                </p>
-              ))}
-            </li>
-          ))}
-        </ul>
-      </div>
-      {showWords && (
-        <div className={puzzle.wordsToFind}>
-          <p>{time} seconds </p>
-          <h1>WORDS TO FIND:</h1>
-          <ul>
-            {words.map((word) => (
-              <li id={word.id} key={word.id} className={word.color}>
-                {word.word}
+    <div className={puzzle.spacer}>
+      <div className={puzzle.background}>
+        <div className={puzzle.puzzle}>
+          <h1>{name}</h1>
+          <button onClick={toggleWords} className={puzzle.findWordButton}>
+            {showWords ? "Hide" : "Show"} words to find
+          </button>
+          <ul onClick={wordFind}>
+            {lines.map((line) => (
+              <li id={line.id} key={line.id} className={puzzle.findWordRow}>
+                {line.text.map((letter) => (
+                  <p
+                    onMouseEnter={mouseHover}
+                    onMouseLeave={mouseLeave}
+                    id={letter.id}
+                    key={letter.id}
+                    className={classnames(
+                      letter.hover,
+                      letter.first,
+                      letter.circle,
+                      letter.color
+                    )}
+                  >
+                    {letter.text}
+                  </p>
+                ))}
               </li>
             ))}
           </ul>
-          <button onClick={toggleWords} className={puzzle.hideWordButton}>
-            Hide words
-          </button>
         </div>
-      )}
-    </>
+        {showWords && (
+          <div className={puzzle.wordsToFind}>
+            <p>{time} seconds </p>
+            <h1>WORDS TO FIND:</h1>
+            <ul>
+              {words.map((word) => (
+                <li id={word.id} key={word.id} className={word.color}>
+                  {word.word}
+                </li>
+              ))}
+            </ul>
+            <button onClick={toggleWords} className={puzzle.hideWordButton}>
+              Hide words
+            </button>
+          </div>
+        )}
+      </div>
+      <Footer />
+    </div>
   );
 };
 
