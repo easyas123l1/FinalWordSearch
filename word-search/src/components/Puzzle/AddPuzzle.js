@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import puzzle from "../../styles/puzzle.module.scss";
 import "./WordSearch.css";
 import { reduxSavePuzzle } from "../../store/actions/puzzleAction";
+import Footer from "../Footer/Footer";
 
 const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   const [lines, setLines] = useState([]);
@@ -552,46 +553,49 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
   };
 
   return (
-    <div className={puzzle.wordSearch}>
-      <div className={puzzle.puzzle}>
-        <h1>{title}</h1>
-        <ul>
-          {lines.map((line) => (
-            <li id={line.id} key={line.id} className={puzzle.findWordRow}>
-              {line.text.map((letter) => (
-                <p id={letter.id} key={letter.id} className={letter.color}>
-                  {letter.text}
-                </p>
-              ))}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <h1>WORDS TO FIND:</h1>
-          {words &&
-            words.map((word) => (
-              <li id={word.id} key={word.id}>
-                {word.text}
+    <div className={puzzle.spacer}>
+      <div className={puzzle.wordSearch}>
+        <div className={puzzle.puzzle}>
+          <h1>{title}</h1>
+          <ul>
+            {lines.map((line) => (
+              <li id={line.id} key={line.id} className={puzzle.findWordRow}>
+                {line.text.map((letter) => (
+                  <p id={letter.id} key={letter.id} className={letter.color}>
+                    {letter.text}
+                  </p>
+                ))}
               </li>
             ))}
-        </ul>
+          </ul>
+        </div>
         <div>
-          <label>
-            Show Words:
-            <input
-              name="showWords"
-              type="checkbox"
-              checked={showWords}
-              onChange={handleToggleWords}
-            />
-          </label>
-          <button onClick={regeneratePuzzle}>Generate new Puzzle</button>
-          <button onClick={savePuzzle}>Save Puzzle</button>
-          <button onClick={editPuzzle}>Edit Puzzle</button>
+          <ul>
+            <h1>WORDS TO FIND:</h1>
+            {words &&
+              words.map((word) => (
+                <li id={word.id} key={word.id}>
+                  {word.text}
+                </li>
+              ))}
+          </ul>
+          <div>
+            <label>
+              Show Words:
+              <input
+                name="showWords"
+                type="checkbox"
+                checked={showWords}
+                onChange={handleToggleWords}
+              />
+            </label>
+            <button onClick={regeneratePuzzle}>Generate new Puzzle</button>
+            <button onClick={savePuzzle}>Save Puzzle</button>
+            <button onClick={editPuzzle}>Edit Puzzle</button>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
