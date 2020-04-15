@@ -20,6 +20,24 @@
   list-style: none;
 }
 
+.printPuzzleButton {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  top: 0px;
+  background-color: #a8d0e6;
+  height: 2rem;
+}
+
+.playPuzzleButton {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  top: 0px;
+  background-color: #a8d0e6;
+  height: 2rem;
+}
+
 .findWordButton {
   position: fixed;
   top: 100%;
@@ -65,7 +83,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 1000;
+  z-index: 1;
   position: fixed;
   top: 0;
   text-decoration: none;
@@ -348,4 +366,40 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.printPuzzle {
+  position: absolute;
+  background-color: white;
+  z-index: 5;
+  width: 100%;
+  min-height: 100vh;
+  height: max-content;
+}
+
+.printWordsToFind {
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.printWordsToFindUl {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.printWordsToFindUl ul {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  width: 100%;
+}
+
+.printWordsToFindUl li {
+  width: 20%;
 }
