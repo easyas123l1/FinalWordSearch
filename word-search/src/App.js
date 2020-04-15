@@ -15,6 +15,7 @@ import WorldRecordWords from "./components/WorldRecord/WorldRecordWords";
 import Victory from "./components/Puzzle/Victory";
 import { getUserInfo } from "./store/actions/userAction";
 import LandingPage from "./components/Landing/LandingPage";
+import PrintPuzzle from "./components/Puzzle/PrintPuzzle";
 
 function App({ getUserInfo, loggedInStatus }) {
   const loggedIn = localStorage.getItem("token");
@@ -37,6 +38,7 @@ function App({ getUserInfo, loggedInStatus }) {
         <Route path="/worldRecord" component={WorldRecord} />
         <Route path="/worldRecordWords" component={WorldRecordWords} />
         <Route path="/completePuzzle" component={Victory} />
+        <Route path="/printPuzzle" component={PrintPuzzle} />
         <PrivateRoute path="/addPuzzle">
           <AddPuzzle />
         </PrivateRoute>
