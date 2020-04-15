@@ -553,8 +553,17 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
 
   return (
     <div className={puzzle.spacer}>
-      <div className={puzzle.wordSearch}>
+      <div className={puzzle.background}>
         <div className={puzzle.puzzle}>
+          <button onClick={regeneratePuzzle} className={puzzle.generateNew}>
+            Generate new Puzzle
+          </button>
+          <button onClick={savePuzzle} className={puzzle.savePuzzle}>
+            Save Puzzle
+          </button>
+          <button onClick={editPuzzle} className={puzzle.editPuzzle}>
+            Edit Puzzle
+          </button>
           <h1>{title}</h1>
           <ul>
             {lines.map((line) => (
@@ -569,15 +578,17 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
           </ul>
         </div>
         <div>
-          <ul>
+          <div className={puzzle.printWordsToFindUl}>
             <h1>WORDS TO FIND:</h1>
-            {words &&
-              words.map((word) => (
-                <li id={word.id} key={word.id}>
-                  {word.text}
-                </li>
-              ))}
-          </ul>
+            <ul>
+              {words &&
+                words.map((word) => (
+                  <li id={word.id} key={word.id}>
+                    {word.text}
+                  </li>
+                ))}
+            </ul>
+          </div>
           <div>
             <label>
               Show Words:
@@ -588,9 +599,6 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
                 onChange={handleToggleWords}
               />
             </label>
-            <button onClick={regeneratePuzzle}>Generate new Puzzle</button>
-            <button onClick={savePuzzle}>Save Puzzle</button>
-            <button onClick={editPuzzle}>Edit Puzzle</button>
           </div>
         </div>
       </div>
