@@ -548,7 +548,6 @@ const AddPuzzle = ({ title, words, size, reduxSavePuzzle }) => {
 
   // !!!NOT COMPLETED!!! THIS FUNCTION SEND USER BACK TO PREVIOUS PAGE TO EDIT PUZZLE!  Genius!
   const editPuzzle = (e) => {
-    console.log(e);
     history.push("/createPuzzle");
   };
 
