@@ -66,7 +66,7 @@ const WorldRecordWords = () => {
     return (
       <div className={puzzle.spacer}>
         <div className={puzzle.backgroundWorldWords}>
-          <p>World Record Words</p>
+          <h1>World Record Words</h1>
           <ul className={puzzle.worldWords}>
             {words.map((word) => (
               <li key={word} className={puzzle.worldRecordWords}>
