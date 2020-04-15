@@ -25,7 +25,38 @@
   top: 100%;
   left: 0;
   top: 0px;
-  background-color: #a8d0e6;
+  background-color: #041e42;
+  color: white;
+  height: 2rem;
+}
+
+.editPuzzle {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  top: 0px;
+  background-color: #041e42;
+  color: white;
+  height: 2rem;
+}
+
+.savePuzzle {
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  top: 0px;
+  background-color: #041e42;
+  color: white;
+  height: 2rem;
+}
+
+.generateNew {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  top: 0px;
+  background-color: #041e42;
+  color: white;
   height: 2rem;
 }
 
@@ -34,7 +65,8 @@
   top: 100%;
   right: 0;
   top: 0px;
-  background-color: #a8d0e6;
+  background-color: #041e42;
+  color: white;
   height: 2rem;
 }
 
@@ -43,12 +75,14 @@
   top: 100%;
   right: 0;
   top: 64px;
-  background-color: #a8d0e6;
+  background-color: #041e42;
+  color: white;
   height: 2rem;
 }
 
 .hideWordButton {
-  background-color: #a8d0e6;
+  background-color: #041e42;
+  color: white;
   height: 2rem;
 }
 
@@ -61,6 +95,7 @@
   height: max-content;
   width: max-content;
   background-color: white;
+  margin-top: 50px;
 }
 
 .puzzle ul {
