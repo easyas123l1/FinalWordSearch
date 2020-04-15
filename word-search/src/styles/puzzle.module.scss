@@ -101,7 +101,7 @@
   background-color: white;
   border: #041e42 solid 3px;
   border-radius: 10px;
-  height: 85vh;
+  height: calc(100vh-96px);
   width: 80vw;
   overflow-y: auto;
 }
@@ -180,6 +180,7 @@ a:hover {
   width: 75%;
   min-height: 80%;
   border-radius: 25px;
+  margin-top: 2%;
 }
 
 .username {
