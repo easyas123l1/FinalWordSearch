@@ -84,11 +84,7 @@ const NavBar = ({ loggedIn, logoutUser }) => {
               Create Puzzle
             </Link>
           </div>
-          <button
-            onClick={logout}
-            className={puzzle.logout}
-            activeStyle={{ color: "#ffb81c" }}
-          >
+          <button onClick={logout} className={puzzle.logout}>
             Logout
           </button>
         </>
