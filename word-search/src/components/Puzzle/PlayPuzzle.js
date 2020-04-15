@@ -383,10 +383,18 @@ const PlayPuzzle = ({
     setShowWords(!showWords);
   };
 
+  const printPuzzle = (e) => {
+    e.preventDefault();
+    history.push("/printPuzzle");
+  };
+
   return (
     <div className={puzzle.spacer}>
       <div className={puzzle.background}>
         <div className={puzzle.puzzle}>
+          <button onClick={printPuzzle} className={puzzle.printPuzzleButton}>
+            Print Puzzle
+          </button>
           <h1>{name}</h1>
           <button onClick={toggleWords} className={puzzle.findWordButton}>
             {showWords ? "Hide" : "Show"} words to find
