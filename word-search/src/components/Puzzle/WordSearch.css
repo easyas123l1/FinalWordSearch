@@ -7,38 +7,47 @@ p {
 }
 
 .cyan {
+  border-radius: 50%;
   background: cyan;
 }
 
 .red {
+  border-radius: 50%;
   background: red;
 }
 
 .green {
+  border-radius: 50%;
   background: green;
 }
 
 .orange {
+  border-radius: 50%;
   background: orange;
 }
 
 .pink {
+  border-radius: 50%;
   background: pink;
 }
 
 .yellow {
+  border-radius: 50%;
   background: yellow;
 }
 
 .purple {
+  border-radius: 50%;
   background: purple;
 }
 
 .brown {
+  border-radius: 50%;
   background: brown;
 }
 
 .silver {
+  border-radius: 50%;
   background: silver;
 }
 
