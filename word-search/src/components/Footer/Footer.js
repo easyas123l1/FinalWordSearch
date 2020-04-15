@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className={puzzle.footer}>
       <p>
-        Click here to contact me:{" "}
+        Click here to contact the creator:{" "}
         <a
           href="mailto:andrew.wilson90@hotmail.com?Subject=Word Search Puzzle"
           target="_top"
