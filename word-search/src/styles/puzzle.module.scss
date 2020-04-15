@@ -334,11 +334,18 @@ a:hover {
   height: 100%;
 }
 
-.one {
+.features {
   background-color: white;
   width: 33.33%;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+.featureDescription {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
